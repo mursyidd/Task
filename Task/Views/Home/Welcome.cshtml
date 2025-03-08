@@ -1,0 +1,140 @@
+﻿@{
+    ViewData["Title"] = "Welcome Screen";
+}
+
+<div class="container mt-5">
+    <h2 class="text-center mb-4">Application Process</h2>
+
+    <!-- Navigation Tabs -->
+    <ul class="nav nav-tabs" id="appTabs">
+        <li class="nav-item"><a class="nav-link active" data-bs-toggle="tab" href="#tab1">Application</a></li>
+        <li class="nav-item"><a class="nav-link" data-bs-toggle="tab" href="#tab2">Section A</a></li>
+        <li class="nav-item"><a class="nav-link" data-bs-toggle="tab" href="#tab3">Section B</a></li>
+        <li class="nav-item"><a class="nav-link" data-bs-toggle="tab" href="#tab4">Section C</a></li>
+        <li class="nav-item"><a class="nav-link" data-bs-toggle="tab" href="#tab5">Section D</a></li>
+        <li class="nav-item"><a class="nav-link" data-bs-toggle="tab" href="#tab6">Section E</a></li>
+        <li class="nav-item"><a class="nav-link" data-bs-toggle="tab" href="#tab7">Review</a></li>
+    </ul>
+
+    <!-- Tab Content -->
+    <div class="tab-content p-4 border">
+        <div class="tab-pane fade show active" id="tab1"> <h4>Application</h4> <p>Welcome to the application process.</p></div>
+
+        <!-- Enhanced Section A: Applicant Personal Details -->
+        <div class="tab-pane fade" id="tab2">
+            <h4>Applicant Personal Details</h4>
+            <form method="post" action="CreateSecA" id="sectionAForm">
+                <div class="mb-3">
+                    <label class="form-label">Full Name</label>
+                    <input type="text" name="COLUMN1" id="COLUMN1" class="form-control" placeholder="Enter your full name" required>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Email</label>
+                    <input type="email" name="COLUMN2" id="COLUMN2" class="form-control" placeholder="Enter your email" required>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Phone Number</label>
+                    <input type="text" name="COLUMN3" id="COLUMN3" class="form-control" placeholder="Enter your phone number" required>
+                </div>
+            </form>
+        </div>
+
+        <div class="tab-pane fade" id="tab3"> <h4>Employment</h4> <p>Provide your employment details.</p></div>
+        <div class="tab-pane fade" id="tab4"> <h4>Qualification and Skills</h4> <p>List your qualifications and skills.</p></div>
+        <div class="tab-pane fade" id="tab5"> <h4>Working Experience</h4> <p>Describe your working experience.</p></div>
+        <div class="tab-pane fade" id="tab6"> <h4>Supporting Document & Declaration</h4> <p>Upload supporting documents.</p></div>
+        <div class="tab-pane fade" id="tab7"> <h4>Review Application</h4> <p>Review all your details before submission.</p></div>
+    </div>
+
+    <!-- Navigation Buttons -->
+    <div class="d-flex justify-content-between mt-4">
+        <button class="btn btn-secondary" id="prevBtn">Previous</button>
+        <button class="btn btn-primary" id="nextBtn">Next</button>
+    </div>
+
+    <!-- Bottom Action Buttons -->
+    <div class="text-center mt-3">
+        <button class="btn btn-danger">Cancel</button>
+        <button class="btn btn-warning" id="saveBtn">Save</button>
+        <button class="btn btn-success">Submit</button>
+    </div>
+</div>
+
+<script>
+    let currentTab = 0;
+    const tabs = document.querySelectorAll('.nav-link');
+
+    function showTab(index) {
+        if (index >= 0 && index < tabs.length) {
+            tabs[currentTab].classList.remove('active');
+            tabs[index].classList.add('active');
+            document.querySelector('.tab-pane.show').classList.remove('show', 'active');
+            document.querySelector(tabs[index].getAttribute('href')).classList.add('show', 'active');
+            currentTab = index;
+        }
+    }
+
+    document.getElementById('nextBtn').addEventListener('click', function () {
+        console.log('here', currentTab);
+        if (currentTab === 4) { // Tab 2 (Section A)
+            saveSectionAData().then(() => showTab(currentTab + 1));
+        } else if (currentTab < tabs.length - 1) {
+            showTab(currentTab + 1);
+        }
+    });
+
+    document.getElementById('prevBtn').addEventListener('click', function () {
+        if (currentTab > 0) {
+            showTab(currentTab - 1);
+        }
+    });
+
+    // Navigate to the first tab when clicking "Save"
+    document.getElementById('saveBtn').addEventListener('click', function () {
+        showTab(0);
+        alert("Your progress has been saved!"); // Optional: Show a confirmation message
+    });
+
+    // Ensure the tab updates correctly when clicked manually
+    tabs.forEach((tab, index) => {
+        tab.addEventListener('shown.bs.tab', function () {
+            currentTab = index;
+        });
+    });
+
+    async function saveSectionAData() {
+        const column1 = document.getElementById("COLUMN1").value;
+        const column2 = document.getElementById("COLUMN2").value;
+        const column3 = document.getElementById("COLUMN3").value;
+
+        const requestData = {
+            MST_REF_ID: 123,
+            COLUMN1: column1,
+            COLUMN2: column2,
+            COLUMN3: column3
+        };
+
+        try {
+            $.ajax({
+                type: "POST",
+                url: '@Url.Action("CreateSecA", "Home")',
+                dataType: "json",
+                data: { "Data": JSON.stringify(requestData) },
+                success: function (data) {
+                },
+                error: function (error) {
+                    console.log("Error:", error);
+                    alert("error!");
+                },
+            });
+
+        } catch (error) {
+            console.error("Error:", error);
+            alert("Failed to save data.");
+        }
+    }
+
+</script>
+
+
+
