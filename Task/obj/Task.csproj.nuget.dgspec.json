@@ -1,24 +1,24 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\ciddh\\source\\repos\\Task\\Task\\Task.csproj": {}
+    "C:\\Users\\ciddh\\OneDrive\\Documents\\GitHub\\Task\\Task\\Task.csproj": {}
   },
   "projects": {
-    "C:\\Users\\ciddh\\source\\repos\\Task\\Task\\Task.csproj": {
+    "C:\\Users\\ciddh\\OneDrive\\Documents\\GitHub\\Task\\Task\\Task.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\ciddh\\source\\repos\\Task\\Task\\Task.csproj",
+        "projectUniqueName": "C:\\Users\\ciddh\\OneDrive\\Documents\\GitHub\\Task\\Task\\Task.csproj",
         "projectName": "Task",
-        "projectPath": "C:\\Users\\ciddh\\source\\repos\\Task\\Task\\Task.csproj",
+        "projectPath": "C:\\Users\\ciddh\\OneDrive\\Documents\\GitHub\\Task\\Task\\Task.csproj",
         "packagesPath": "C:\\Users\\ciddh\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\ciddh\\source\\repos\\Task\\Task\\obj\\",
+        "outputPath": "C:\\Users\\ciddh\\OneDrive\\Documents\\GitHub\\Task\\Task\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files\\DevExpress 22.2\\Components\\Offline Packages",
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\ciddh\\source\\repos\\Task\\NuGet.Config",
+          "C:\\Users\\ciddh\\OneDrive\\Documents\\GitHub\\Task\\NuGet.Config",
           "C:\\Users\\ciddh\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\DevExpress 22.2.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",

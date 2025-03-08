@@ -4,9 +4,11 @@ using Task.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Cors;
 using static System.Runtime.InteropServices.JavaScript.JSType;
+using Newtonsoft.Json;
 
 namespace Task.Controllers;
 
+// [Route("[controller]/[action]")]
 public class HomeController : Controller
 {
     private readonly ILogger<HomeController> _logger;
@@ -111,16 +113,18 @@ public class HomeController : Controller
         return View();
     }
 
-    [HttpPost("CreateSecA")]
-    [ValidateAntiForgeryToken]
-    public async Task<IActionResult> CreateSecA([FromBody] REF_SESSION_A_TBL Data)
+    [HttpPost]
+    public async Task<IActionResult> CreateSecA(string Data)
     {
         if (Data == null)
         {
             return BadRequest(new { message = "Invalid data" });
         }
 
-        _db.REF_SESSION_A_TBL.Add(Data);
+        var model = JsonConvert.DeserializeObject<REF_SESSION_A_TBL>(Data);
+
+
+        _db.REF_SESSION_A_TBL.Add(model);
         await _db.SaveChangesAsync();
 
         return Ok(new { message = "Data saved successfully!" });
