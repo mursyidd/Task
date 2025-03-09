@@ -11,12 +11,24 @@
       "RelativeMoniker": "D:0:0:{BCD9967C-0F1E-4CE1-B5E8-2BCCC1A1B90F}|Task\\Task.csproj|solutionrelative:task\\controllers\\homecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{BCD9967C-0F1E-4CE1-B5E8-2BCCC1A1B90F}|Task\\Task.csproj|c:\\users\\ciddh\\onedrive\\documents\\github\\task\\task\\models\\session_e_doc_dtl_tbl.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{BCD9967C-0F1E-4CE1-B5E8-2BCCC1A1B90F}|Task\\Task.csproj|solutionrelative:task\\models\\session_e_doc_dtl_tbl.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{BCD9967C-0F1E-4CE1-B5E8-2BCCC1A1B90F}|Task\\Task.csproj|c:\\users\\ciddh\\onedrive\\documents\\github\\task\\task\\models\\session_b_empl_dtl_tbl.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{BCD9967C-0F1E-4CE1-B5E8-2BCCC1A1B90F}|Task\\Task.csproj|solutionrelative:task\\models\\session_b_empl_dtl_tbl.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BCD9967C-0F1E-4CE1-B5E8-2BCCC1A1B90F}|Task\\Task.csproj|c:\\users\\ciddh\\onedrive\\documents\\github\\task\\task\\views\\home\\view.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{BCD9967C-0F1E-4CE1-B5E8-2BCCC1A1B90F}|Task\\Task.csproj|solutionrelative:task\\views\\home\\view.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{BCD9967C-0F1E-4CE1-B5E8-2BCCC1A1B90F}|Task\\Task.csproj|c:\\users\\ciddh\\onedrive\\documents\\github\\task\\task\\models\\applicationdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{BCD9967C-0F1E-4CE1-B5E8-2BCCC1A1B90F}|Task\\Task.csproj|solutionrelative:task\\models\\applicationdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BCD9967C-0F1E-4CE1-B5E8-2BCCC1A1B90F}|Task\\Task.csproj|c:\\users\\ciddh\\onedrive\\documents\\github\\task\\task\\models\\reviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{BCD9967C-0F1E-4CE1-B5E8-2BCCC1A1B90F}|Task\\Task.csproj|solutionrelative:task\\models\\reviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BCD9967C-0F1E-4CE1-B5E8-2BCCC1A1B90F}|Task\\Task.csproj|c:\\users\\ciddh\\onedrive\\documents\\github\\task\\task\\models\\session_e_doc_dtl_tbl.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{BCD9967C-0F1E-4CE1-B5E8-2BCCC1A1B90F}|Task\\Task.csproj|solutionrelative:task\\models\\session_e_doc_dtl_tbl.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -26,11 +38,50 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 3,
+          "SelectedChildIndex": 6,
           "Children": [
             {
               "$type": "Document",
               "DocumentIndex": 2,
+              "Title": "SESSION_B_EMPL_DTL_TBL.cs",
+              "DocumentMoniker": "C:\\Users\\ciddh\\OneDrive\\Documents\\GitHub\\Task\\Task\\Models\\SESSION_B_EMPL_DTL_TBL.cs",
+              "RelativeDocumentMoniker": "Task\\Models\\SESSION_B_EMPL_DTL_TBL.cs",
+              "ToolTip": "C:\\Users\\ciddh\\OneDrive\\Documents\\GitHub\\Task\\Task\\Models\\SESSION_B_EMPL_DTL_TBL.cs",
+              "RelativeToolTip": "Task\\Models\\SESSION_B_EMPL_DTL_TBL.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAQAAAAnAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-09T08:08:20.038Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "View.cshtml",
+              "DocumentMoniker": "C:\\Users\\ciddh\\OneDrive\\Documents\\GitHub\\Task\\Task\\Views\\Home\\View.cshtml",
+              "RelativeDocumentMoniker": "Task\\Views\\Home\\View.cshtml",
+              "ToolTip": "C:\\Users\\ciddh\\OneDrive\\Documents\\GitHub\\Task\\Task\\Views\\Home\\View.cshtml",
+              "RelativeToolTip": "Task\\Views\\Home\\View.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABEAAAAOAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-03-09T07:34:20.308Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "ReviewModel.cs",
+              "DocumentMoniker": "C:\\Users\\ciddh\\OneDrive\\Documents\\GitHub\\Task\\Task\\Models\\ReviewModel.cs",
+              "RelativeDocumentMoniker": "Task\\Models\\ReviewModel.cs",
+              "ToolTip": "C:\\Users\\ciddh\\OneDrive\\Documents\\GitHub\\Task\\Task\\Models\\ReviewModel.cs",
+              "RelativeToolTip": "Task\\Models\\ReviewModel.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAA/AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-09T07:32:24.823Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
               "Title": "SESSION_E_DOC_DTL_TBL.cs",
               "DocumentMoniker": "C:\\Users\\ciddh\\OneDrive\\Documents\\GitHub\\Task\\Task\\Models\\SESSION_E_DOC_DTL_TBL.cs",
               "RelativeDocumentMoniker": "Task\\Models\\SESSION_E_DOC_DTL_TBL.cs",
@@ -43,7 +94,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 4,
               "Title": "ApplicationDbContext.cs",
               "DocumentMoniker": "C:\\Users\\ciddh\\OneDrive\\Documents\\GitHub\\Task\\Task\\Models\\ApplicationDbContext.cs",
               "RelativeDocumentMoniker": "Task\\Models\\ApplicationDbContext.cs",
@@ -62,7 +113,7 @@
               "RelativeDocumentMoniker": "Task\\Controllers\\HomeController.cs",
               "ToolTip": "C:\\Users\\ciddh\\OneDrive\\Documents\\GitHub\\Task\\Task\\Controllers\\HomeController.cs",
               "RelativeToolTip": "Task\\Controllers\\HomeController.cs",
-              "ViewState": "AgIAAA8BAAAAAAAAAIAwwCUBAAAJAAAAAAAAAA==",
+              "ViewState": "AgIAANMAAAAAAAAAAAASwAgBAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-03-08T15:24:15.265Z",
               "EditorCaption": ""
@@ -75,7 +126,7 @@
               "RelativeDocumentMoniker": "Task\\Views\\Home\\Welcome.cshtml",
               "ToolTip": "C:\\Users\\ciddh\\OneDrive\\Documents\\GitHub\\Task\\Task\\Views\\Home\\Welcome.cshtml",
               "RelativeToolTip": "Task\\Views\\Home\\Welcome.cshtml",
-              "ViewState": "AgIAADUBAAAAAAAAAIAwwHsBAAAWAAAAAAAAAA==",
+              "ViewState": "AgIAAKMAAAAAAAAAAIAwwOEAAAAJAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
               "WhenOpened": "2025-03-08T15:23:17.664Z",
               "EditorCaption": ""

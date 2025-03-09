@@ -22,7 +22,9 @@ public class HomeController : Controller
 
     public async Task<IActionResult> Welcome()
     {
-        return View();
+        ReviewModel review = new ReviewModel();
+
+        return View(review);
     }
 
     // GET: People
@@ -267,13 +269,14 @@ public class HomeController : Controller
             Directory.CreateDirectory(uploadsFolder);
         }
 
-        var filePath = Path.Combine(uploadsFolder, RESUME.FileName);
-        using (var stream = new FileStream(filePath, FileMode.Create))
+        var filePath1 = Path.Combine(uploadsFolder, RESUME.FileName);
+        using (var stream = new FileStream(filePath1, FileMode.Create))
         {
             await RESUME.CopyToAsync(stream);
         }
 
-        using (var stream = new FileStream(filePath, FileMode.Create))
+        var filePath2 = Path.Combine(uploadsFolder, COVER_LETTER.FileName);
+        using (var stream = new FileStream(filePath2, FileMode.Create))
         {
             await COVER_LETTER.CopyToAsync(stream);
         }
@@ -314,5 +317,44 @@ public class HomeController : Controller
         {
             return StatusCode(500, new { message = "Internal server error", error = ex.Message });
         }
+    }
+
+    public async Task<ReviewModel> getAllInfo(string MST_REF_ID)
+    {
+        ReviewModel review = new ReviewModel();
+
+        review.SESSION_A = await _db.SESSION_A_APPL_DTL_TBL.Where(x => x.MST_REF_ID == MST_REF_ID).FirstOrDefaultAsync();
+        review.SESSION_B = await _db.SESSION_B_EMPL_DTL_TBL.Where(x => x.MST_REF_ID == MST_REF_ID).FirstOrDefaultAsync();
+        review.SESSION_C = await _db.SESSION_C_QUAL_DTL_TBL.Where(x => x.MST_REF_ID == MST_REF_ID).FirstOrDefaultAsync();
+        review.SESSION_D = await _db.SESSION_D_PAST_EMPL_DTL_TBL.Where(x => x.MST_REF_ID == MST_REF_ID).FirstOrDefaultAsync();
+        review.SESSION_E = await _db.SESSION_E_DOC_DTL_TBL.Where(x => x.MST_REF_ID == MST_REF_ID).FirstOrDefaultAsync();
+
+        return review;
+    }
+
+    [HttpPost]
+    public async Task<IActionResult> Download(string filename)
+    {
+        var filePath = Path.Combine("wwwroot/uploads/", filename);
+        if (!System.IO.File.Exists(filePath))
+        {
+            return NotFound(new { message = "File not found" });
+        }
+
+        var content = await System.IO.File.ReadAllBytesAsync(filePath);
+        return File(content, "application/pdf", filename);
+    }
+
+    public async Task<string> getLatestMST_REF_ID()
+    {
+        string latestMstRefId = await _db.SESSION_A_APPL_DTL_TBL
+            .FromSqlRaw("SELECT TOP 1 MST_REF_ID FROM SESSION_A_APPL_DTL_TBL ORDER BY MST_REF_ID DESC")
+            .Select(x => x.MST_REF_ID)
+            .FirstOrDefaultAsync() ?? "0";
+
+        long refIdNum = long.Parse(latestMstRefId);
+        refIdNum = refIdNum + 1;
+
+        return refIdNum.ToString();
     }
 }

@@ -1,4 +1,5 @@
-﻿@{
+﻿@model ReviewModel
+@{
     ViewData["Title"] = "Welcome Screen";
 }
 
@@ -44,7 +45,7 @@
 
             <form method="post" action="SaveEmployment" id="employmentForm">
                 <div class="mb-3">
-                    <label for="JOB_TITLE" class="form-label">Cuirrent Job Title</label>
+                    <label for="JOB_TITLE" class="form-label">Current Job Title</label>
                     <input type="text" name="EMPL_TITLE" id="EMPL_TITLE" class="form-control" placeholder="Enter your job title" required>
                 </div>
                 <div class="mb-3">
@@ -126,8 +127,43 @@
                 </div>
             </form>
         </div>
+        <div class="tab-pane fade" id="tab7">
+            <h4>Review Application</h4> 
+            <p>Review all your details before submission.</p>
 
-        <div class="tab-pane fade" id="tab7"> <h4>Review Application</h4> <p>Review all your details before submission.</p></div>
+            <h4><strong>Section A</strong></h4>
+            <h4 id="APPL_NAME1">First Name: </h4>
+            <h4 id="APPL_EMAIL">Email: </h4>
+            <h4 id="APPL_PHONE">Phone Number: </h4>
+
+            <h4><strong>Section B</strong></h4>
+            <h4 id="EMPL_TITLE">Current Job Title: </h4>
+            <h4 id="EMPL_COMP_NAME">Current Company Name: </h4>
+            <h4 id="EMPL_EXP">Years of Experience Here: </h4>
+
+            <h4><strong>Section C</strong></h4>
+            <h4 id="QUAL">Highest Qualification: </h4>
+            <h4 id="CERT">Relevant Certifications: </h4>
+            <h4 id="SKILL">Key Skills: </h4>
+
+            <h4><strong>Section D</strong></h4>
+            <h4 id="PAST_COMP_NAME">Past Company Name: </h4>
+            <h4 id="PAST_JOB_TITLE">Past Job Title: </h4>
+            <h4 id="PAST_EXP">Past Years of Experience: </h4>
+
+            <h4><strong>Section E</strong></h4>
+            <div class="d-flex align-items-center">
+                <h4 id="DOC_RESUME" class="me-3">Resume: </h4>
+                <button class="btn btn-primary" id="viewResumeBtn" onclick="resumeOnClick()">View</button>
+            </div>
+            <div class="d-flex align-items-center">
+                <h4 id="DOC_COVER" class="me-3">Cover Letter: </h4>
+                <button class="btn btn-primary" id="viewCoverBtn" onclick="coverOnClick()">View</button>
+            </div>
+            <label>
+                I confirm that all provided information is accurate and truthful.
+            </label>
+        </div>
     </div>
 
     <!-- Navigation Buttons -->
@@ -145,6 +181,7 @@
 </div>
 
 <script>
+    var MST_REF_ID = "0";
     let currentTab = 0;
     const tabs = document.querySelectorAll('.nav-link');
 
@@ -155,6 +192,10 @@
             document.querySelector('.tab-pane.show').classList.remove('show', 'active');
             document.querySelector(tabs[index].getAttribute('href')).classList.add('show', 'active');
             currentTab = index;
+        }
+
+        if (index == 9) {
+            getAllInfo();
         }
     }
 
@@ -179,12 +220,15 @@
         tab.addEventListener('shown.bs.tab', function () {
             currentTab = index;
         });
+
+        if (index == 9) {
+            getAllInfo();
+        }
     });
 
     async function handleSaveAndProceed(currentTab) {
         let isSaved = false;
 
-        console.log('here', currentTab);
         if (currentTab === 4) { // Tab 2 (Section A)
             isSaved = await saveSectionAData();
         } else if (currentTab === 5) {
@@ -208,37 +252,43 @@
     }
 
     async function saveSectionAData() {
-        const APPL_NAME = document.getElementById("APPL_NAME").value;
-        const APPL_EMAIL = document.getElementById("APPL_EMAIL").value;
-        const APPL_PHONE = document.getElementById("APPL_PHONE").value;
-
-        if (!APPL_NAME) {
-            alert("Name is required!");
-            return false;
-        }
-
-        if (!APPL_EMAIL) {
-            alert("Email is required!");
-            return false;
-        }
-
-        if (!APPL_PHONE) {
-            alert("Phone Number is required!");
-            return false;
-        }
-
-        const now = new Date();
-        const formattedDate = now.toLocaleDateString("en-GB").split("/").reverse().join(""); // Format: ddMMyyyy
-        const time = formattedDate + "001";
-
-        const requestData = {
-            MST_REF_ID: parseInt(time, 10),
-            APPL_NAME: APPL_NAME,
-            APPL_EMAIL: APPL_EMAIL,
-            APPL_PHONE: APPL_PHONE
-        };
-
         try {
+            if (MST_REF_ID == "0") {
+                MST_REF_ID = await $.ajax({
+                    type: "GET",
+                    url: '@Url.Action("getLatestMST_REF_ID", "Home")'
+                });
+            }
+
+            // Retrieve form values
+            const APPL_NAME = document.getElementById("APPL_NAME").value.trim();
+            const APPL_EMAIL = document.getElementById("APPL_EMAIL").value.trim();
+            const APPL_PHONE = document.getElementById("APPL_PHONE").value.trim();
+
+            // Form validation
+            if (!APPL_NAME) {
+                alert("Name is required!");
+                return false;
+            }
+
+            if (!APPL_EMAIL) {
+                alert("Email is required!");
+                return false;
+            }
+
+            if (!APPL_PHONE) {
+                alert("Phone Number is required!");
+                return false;
+            }
+
+            const requestData = {
+                MST_REF_ID: MST_REF_ID,
+                APPL_NAME: APPL_NAME,
+                APPL_EMAIL: APPL_EMAIL,
+                APPL_PHONE: APPL_PHONE
+            };
+
+            // Send data to the backend
             const response = await $.ajax({
                 type: "POST",
                 url: '@Url.Action("CreateSecA", "Home")',
@@ -247,22 +297,19 @@
             });
             return true;
         } catch (error) {
-            alert(error.responseJSON.message);
+            alert(error.responseJSON?.message || "An error occurred while saving data.");
             return false;
         }
     }
+
 
     async function saveSectionBData() {
         const EMPL_TITLE = document.getElementById("EMPL_TITLE").value;
         const EMPL_COMP_NAME = document.getElementById("EMPL_COMP_NAME").value;
         const EMPL_EXP = document.getElementById("EMPL_EXP").value;
 
-        const now = new Date();
-        const formattedDate = now.toLocaleDateString("en-GB").split("/").reverse().join(""); // Format: ddMMyyyy
-        const time = formattedDate + "001";
-
         const requestData = {
-            MST_REF_ID: parseInt(time, 10),
+            MST_REF_ID: MST_REF_ID,
             EMPL_TITLE: EMPL_TITLE,
             EMPL_COMP_NAME: EMPL_COMP_NAME,
             EMPL_EXP: EMPL_EXP
@@ -287,12 +334,8 @@
         const CERT = document.getElementById("CERT").value;
         const SKILL = document.getElementById("SKILL").value;
 
-        const now = new Date();
-        const formattedDate = now.toLocaleDateString("en-GB").split("/").reverse().join(""); // Format: ddMMyyyy
-        const time = formattedDate + "001";
-
         const requestData = {
-            MST_REF_ID: parseInt(time, 10),
+            MST_REF_ID: MST_REF_ID,
             QUAL: QUAL,
             CERT: CERT,
             SKILL: SKILL
@@ -317,12 +360,8 @@
         const PAST_JOB_TITLE = document.getElementById("PAST_JOB_TITLE").value;
         const PAST_EXP = document.getElementById("PAST_EXP").value;
 
-        const now = new Date();
-        const formattedDate = now.toLocaleDateString("en-GB").split("/").reverse().join(""); // Format: ddMMyyyy
-        const time = formattedDate + "001";
-
         const requestData = {
-            MST_REF_ID: parseInt(time, 10),
+            MST_REF_ID: MST_REF_ID,
             PAST_COMP_NAME: PAST_COMP_NAME,
             PAST_JOB_TITLE: PAST_JOB_TITLE,
             PAST_EXP: PAST_EXP
@@ -346,10 +385,6 @@
         const RESUME = document.getElementById("RESUME").files[0];
         const COVER_LETTER = document.getElementById("COVER_LETTER").files[0];
         const isAGREE = document.getElementById("isAGREE").checked;
-
-        const now = new Date();
-        const formattedDate = now.toLocaleDateString("en-GB").split("/").reverse().join(""); // Format: ddMMyyyy
-        const time = formattedDate + "001";
 
         const formData = new FormData();
         formData.append("RESUME", RESUME);
@@ -376,7 +411,7 @@
         }
 
         const requestData = {
-            MST_REF_ID: parseInt(time, 10),
+            MST_REF_ID: MST_REF_ID,
             DOC_RESUME: ResumeFileName,
             DOC_COVER: CoverFileName,
             AGREEMENT: isAGREE
@@ -396,6 +431,89 @@
         }
     }
 
+    async function getAllInfo() {
+        try {
+            const response = await $.ajax({
+                type: "GET",
+                url: '@Url.Action("getAllInfo", "Home")',
+                data: {
+                    MST_REF_ID: MST_REF_ID,
+                },
+                 success: function (data) {
+                    PatchValueReview(data);
+                },
+            });
+        } catch (error) {
+        }
+    }
+
+    function PatchValueReview(data) {
+        if (data.SESSION_A) {
+            $("h4#APPL_NAME1").html(`First Name: ${data.SESSION_A.APPL_NAME}`);
+            $("h4#APPL_EMAIL").html(`Email: ${data.SESSION_A.APPL_EMAIL}`);
+            $("h4#APPL_PHONE").html(`Phone Number: ${data.SESSION_A.APPL_PHONE}`);
+        }
+
+        if (data.SESSION_B) {
+            $("h4#EMPL_TITLE").html(`Current Job Title: ${data.SESSION_B.EMPL_TITLE}`);
+            $("h4#EMPL_COMP_NAME").html(`Current Company Name: ${data.SESSION_B.EMPL_COMP_NAME}`);
+            $("h4#EMPL_EXP").html(`Years of Experience Here: ${data.SESSION_B.EMPL_EXP}`);
+        }
+
+        if (data.SESSION_C) {
+            $("h4#QUAL").html(`Highest Qualification: ${data.SESSION_C.QUAL}`);
+            $("h4#CERT").html(`Relevant Certifications: ${data.SESSION_C.CERT}`);
+            $("h4#SKILL").html(`Key Skills: ${data.SESSION_C.SKILL}`);
+        }
+
+        if (data.SESSION_D) {
+            $("h4#PAST_COMP_NAME").html(`Past Company Name: ${data.SESSION_D.PAST_COMP_NAME}`);
+            $("h4#PAST_JOB_TITLE").html(`Past Job Title: ${data.SESSION_D.PAST_JOB_TITLE}`);
+            $("h4#PAST_EXP").html(`Past Years of Experience: ${data.SESSION_D.PAST_EXP}`);
+        }
+
+        if (data.SESSION_E) {
+            $("h4#DOC_RESUME").html(`Resume: ${data.SESSION_E.DOC_RESUME}`);
+            $("h4#DOC_COVER").html(`Past Job Title: ${data.SESSION_E.DOC_COVER}`);
+        }
+    }
+
+    function resumeOnClick(e) {
+        const resumeName = document.getElementById("DOC_RESUME").textContent.split(":")[1].trim();
+        download(resumeName, 'view');
+    }
+
+    function coverOnClick(e) {
+        const coverName = document.getElementById("DOC_COVER").textContent.split(":")[1].trim();
+        download(coverName, 'view');
+    }
+
+    function download(fileName, type) {
+        $.ajax({
+            type: "POST",
+            url: '@Url.Action("Download", "Home")',
+            xhrFields: {
+                responseType: 'blob'
+            },
+            data: {
+                filename: fileName,
+            },
+            success: function (data) {
+                var a = document.createElement('a');
+                var url = window.URL.createObjectURL(data);
+                a.href = url;
+                if (type == 'download')
+                    a.download = e.row.data.FRIENDLY_NAME;
+                a.target = '_blank';
+                document.body.append(a);
+                a.click();
+                a.remove();
+                //window.URL.revokeObjectURL(url);
+            },
+            error: function (data) {
+            }
+        });
+    }
 </script>
 
 

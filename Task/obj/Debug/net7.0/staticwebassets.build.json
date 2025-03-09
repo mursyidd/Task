@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "X6HUCpFLm5HlhtpmnwUzsm4twXnbcu/US++1QzmS3no=",
+  "Hash": "xf+uF971KDDkJGcVwz+haU/GMbsqnALhEsH651sk50A=",
   "Source": "Task",
   "BasePath": "_content/Task",
   "Mode": "Default",
@@ -4399,8 +4399,8 @@
       "RelatedAsset": "",
       "AssetTraitName": "",
       "AssetTraitValue": "",
-      "Fingerprint": "4l89z2xuur",
-      "Integrity": "uG7TjKY26HdjmvRyzyFXa7u7ULbiEW7Qp6P6JW0ylxo=",
+      "Fingerprint": "wnousc7fcy",
+      "Integrity": "XFRWVQu4Dz5zcYZjivtQhCxj276/H0olhpd9ZpS+LOU=",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\uploads\\IT Programmer.pdf"
@@ -21343,7 +21343,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Sun, 09 Mar 2025 06:48:38 GMT"
+          "Value": "Sun, 09 Mar 2025 09:30:43 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -21388,7 +21388,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Sun, 09 Mar 2025 06:48:38 GMT"
+          "Value": "Sun, 09 Mar 2025 09:30:43 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -21433,7 +21433,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Sun, 09 Mar 2025 06:48:38 GMT"
+          "Value": "Sun, 09 Mar 2025 09:30:43 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -21470,7 +21470,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Sun, 09 Mar 2025 06:48:38 GMT"
+          "Value": "Sun, 09 Mar 2025 09:30:43 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -21485,51 +21485,6 @@
       ]
     },
     {
-      "Route": "uploads/IT Programmer.4l89z2xuur.pdf",
-      "AssetFile": "C:\\Users\\ciddh\\OneDrive\\Documents\\GitHub\\Task\\Task\\wwwroot\\uploads\\IT Programmer.pdf",
-      "Selectors": [],
-      "ResponseHeaders": [
-        {
-          "Name": "Accept-Ranges",
-          "Value": "bytes"
-        },
-        {
-          "Name": "Content-Length",
-          "Value": "4495145"
-        },
-        {
-          "Name": "Content-Type",
-          "Value": "application/pdf"
-        },
-        {
-          "Name": "ETag",
-          "Value": "\"uG7TjKY26HdjmvRyzyFXa7u7ULbiEW7Qp6P6JW0ylxo=\""
-        },
-        {
-          "Name": "Last-Modified",
-          "Value": "Sun, 09 Mar 2025 06:50:34 GMT"
-        },
-        {
-          "Name": "Cache-Control",
-          "Value": "max-age=31536000, immutable"
-        }
-      ],
-      "EndpointProperties": [
-        {
-          "Name": "fingerprint",
-          "Value": "4l89z2xuur"
-        },
-        {
-          "Name": "label",
-          "Value": "uploads/IT Programmer.pdf"
-        },
-        {
-          "Name": "integrity",
-          "Value": "sha256-uG7TjKY26HdjmvRyzyFXa7u7ULbiEW7Qp6P6JW0ylxo="
-        }
-      ]
-    },
-    {
       "Route": "uploads/IT Programmer.pdf",
       "AssetFile": "C:\\Users\\ciddh\\OneDrive\\Documents\\GitHub\\Task\\Task\\wwwroot\\uploads\\IT Programmer.pdf",
       "Selectors": [],
@@ -21540,7 +21495,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "4495145"
+          "Value": "200389"
         },
         {
           "Name": "Content-Type",
@@ -21548,11 +21503,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"uG7TjKY26HdjmvRyzyFXa7u7ULbiEW7Qp6P6JW0ylxo=\""
+          "Value": "\"XFRWVQu4Dz5zcYZjivtQhCxj276/H0olhpd9ZpS+LOU=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Sun, 09 Mar 2025 06:50:34 GMT"
+          "Value": "Sun, 09 Mar 2025 09:38:08 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -21562,7 +21517,52 @@
       "EndpointProperties": [
         {
           "Name": "integrity",
-          "Value": "sha256-uG7TjKY26HdjmvRyzyFXa7u7ULbiEW7Qp6P6JW0ylxo="
+          "Value": "sha256-XFRWVQu4Dz5zcYZjivtQhCxj276/H0olhpd9ZpS+LOU="
+        }
+      ]
+    },
+    {
+      "Route": "uploads/IT Programmer.wnousc7fcy.pdf",
+      "AssetFile": "C:\\Users\\ciddh\\OneDrive\\Documents\\GitHub\\Task\\Task\\wwwroot\\uploads\\IT Programmer.pdf",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "200389"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "application/pdf"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"XFRWVQu4Dz5zcYZjivtQhCxj276/H0olhpd9ZpS+LOU=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sun, 09 Mar 2025 09:38:08 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "wnousc7fcy"
+        },
+        {
+          "Name": "label",
+          "Value": "uploads/IT Programmer.pdf"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-XFRWVQu4Dz5zcYZjivtQhCxj276/H0olhpd9ZpS+LOU="
         }
       ]
     },
@@ -21589,7 +21589,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Sun, 09 Mar 2025 06:33:23 GMT"
+          "Value": "Sun, 09 Mar 2025 09:38:08 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -21634,7 +21634,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Sun, 09 Mar 2025 06:33:23 GMT"
+          "Value": "Sun, 09 Mar 2025 09:38:08 GMT"
         },
         {
           "Name": "Cache-Control",

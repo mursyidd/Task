@@ -3738,8 +3738,8 @@
       <RelatedAsset></RelatedAsset>
       <AssetTraitName></AssetTraitName>
       <AssetTraitValue></AssetTraitValue>
-      <Fingerprint>4l89z2xuur</Fingerprint>
-      <Integrity>uG7TjKY26HdjmvRyzyFXa7u7ULbiEW7Qp6P6JW0ylxo=</Integrity>
+      <Fingerprint>wnousc7fcy</Fingerprint>
+      <Integrity>XFRWVQu4Dz5zcYZjivtQhCxj276/H0olhpd9ZpS+LOU=</Integrity>
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\uploads\IT Programmer.pdf'))</OriginalItemSpec>
