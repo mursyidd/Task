@@ -829,6 +829,14 @@
       "PackagePath": "staticwebassets\\lib\\jquery\\dist\\jquery.min.map"
     },
     {
+      "Id": "C:\\Users\\ciddh\\OneDrive\\Documents\\GitHub\\Task\\Task\\wwwroot\\uploads\\IT Programmer.pdf",
+      "PackagePath": "staticwebassets\\uploads\\IT Programmer.pdf"
+    },
+    {
+      "Id": "C:\\Users\\ciddh\\OneDrive\\Documents\\GitHub\\Task\\Task\\wwwroot\\uploads\\Jaecoo-J7PHEV-EBROCHURE.pdf",
+      "PackagePath": "staticwebassets\\uploads\\Jaecoo-J7PHEV-EBROCHURE.pdf"
+    },
+    {
       "Id": "obj\\Debug\\net7.0\\staticwebassets\\msbuild.Task.Microsoft.AspNetCore.StaticWebAssetEndpoints.props",
       "PackagePath": "build\\Microsoft.AspNetCore.StaticWebAssetEndpoints.props"
     },

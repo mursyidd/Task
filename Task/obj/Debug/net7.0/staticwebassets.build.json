@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "YI+iZFGQFz/l4K0spQhdFlZJJ9H/J2aoSsmfBMjHB/s=",
+  "Hash": "X6HUCpFLm5HlhtpmnwUzsm4twXnbcu/US++1QzmS3no=",
   "Source": "Task",
   "BasePath": "_content/Task",
   "Mode": "Default",
@@ -4383,6 +4383,48 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\lib\\jquery-validation-unobtrusive\\LICENSE.txt"
+    },
+    {
+      "Identity": "C:\\Users\\ciddh\\OneDrive\\Documents\\GitHub\\Task\\Task\\wwwroot\\uploads\\IT Programmer.pdf",
+      "SourceId": "Task",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\ciddh\\OneDrive\\Documents\\GitHub\\Task\\Task\\wwwroot\\",
+      "BasePath": "_content/Task",
+      "RelativePath": "uploads/IT Programmer#[.{fingerprint}]?.pdf",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "4l89z2xuur",
+      "Integrity": "uG7TjKY26HdjmvRyzyFXa7u7ULbiEW7Qp6P6JW0ylxo=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\uploads\\IT Programmer.pdf"
+    },
+    {
+      "Identity": "C:\\Users\\ciddh\\OneDrive\\Documents\\GitHub\\Task\\Task\\wwwroot\\uploads\\Jaecoo-J7PHEV-EBROCHURE.pdf",
+      "SourceId": "Task",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\ciddh\\OneDrive\\Documents\\GitHub\\Task\\Task\\wwwroot\\",
+      "BasePath": "_content/Task",
+      "RelativePath": "uploads/Jaecoo-J7PHEV-EBROCHURE#[.{fingerprint}]?.pdf",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "4l89z2xuur",
+      "Integrity": "uG7TjKY26HdjmvRyzyFXa7u7ULbiEW7Qp6P6JW0ylxo=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\uploads\\Jaecoo-J7PHEV-EBROCHURE.pdf"
     }
   ],
   "Endpoints": [
@@ -21301,7 +21343,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Sun, 09 Mar 2025 05:28:50 GMT"
+          "Value": "Sun, 09 Mar 2025 06:48:38 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -21346,7 +21388,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Sun, 09 Mar 2025 05:28:50 GMT"
+          "Value": "Sun, 09 Mar 2025 06:48:38 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -21391,7 +21433,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Sun, 09 Mar 2025 05:28:50 GMT"
+          "Value": "Sun, 09 Mar 2025 06:48:38 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -21428,7 +21470,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Sun, 09 Mar 2025 05:28:50 GMT"
+          "Value": "Sun, 09 Mar 2025 06:48:38 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -21439,6 +21481,170 @@
         {
           "Name": "integrity",
           "Value": "sha256-KQMaSTEKUfbgUOlqDwIVBl+FGR7wzQWeTOqevyS5X9M="
+        }
+      ]
+    },
+    {
+      "Route": "uploads/IT Programmer.4l89z2xuur.pdf",
+      "AssetFile": "C:\\Users\\ciddh\\OneDrive\\Documents\\GitHub\\Task\\Task\\wwwroot\\uploads\\IT Programmer.pdf",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "4495145"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "application/pdf"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"uG7TjKY26HdjmvRyzyFXa7u7ULbiEW7Qp6P6JW0ylxo=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sun, 09 Mar 2025 06:50:34 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "4l89z2xuur"
+        },
+        {
+          "Name": "label",
+          "Value": "uploads/IT Programmer.pdf"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-uG7TjKY26HdjmvRyzyFXa7u7ULbiEW7Qp6P6JW0ylxo="
+        }
+      ]
+    },
+    {
+      "Route": "uploads/IT Programmer.pdf",
+      "AssetFile": "C:\\Users\\ciddh\\OneDrive\\Documents\\GitHub\\Task\\Task\\wwwroot\\uploads\\IT Programmer.pdf",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "4495145"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "application/pdf"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"uG7TjKY26HdjmvRyzyFXa7u7ULbiEW7Qp6P6JW0ylxo=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sun, 09 Mar 2025 06:50:34 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-uG7TjKY26HdjmvRyzyFXa7u7ULbiEW7Qp6P6JW0ylxo="
+        }
+      ]
+    },
+    {
+      "Route": "uploads/Jaecoo-J7PHEV-EBROCHURE.4l89z2xuur.pdf",
+      "AssetFile": "C:\\Users\\ciddh\\OneDrive\\Documents\\GitHub\\Task\\Task\\wwwroot\\uploads\\Jaecoo-J7PHEV-EBROCHURE.pdf",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "4495145"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "application/pdf"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"uG7TjKY26HdjmvRyzyFXa7u7ULbiEW7Qp6P6JW0ylxo=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sun, 09 Mar 2025 06:33:23 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "4l89z2xuur"
+        },
+        {
+          "Name": "label",
+          "Value": "uploads/Jaecoo-J7PHEV-EBROCHURE.pdf"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-uG7TjKY26HdjmvRyzyFXa7u7ULbiEW7Qp6P6JW0ylxo="
+        }
+      ]
+    },
+    {
+      "Route": "uploads/Jaecoo-J7PHEV-EBROCHURE.pdf",
+      "AssetFile": "C:\\Users\\ciddh\\OneDrive\\Documents\\GitHub\\Task\\Task\\wwwroot\\uploads\\Jaecoo-J7PHEV-EBROCHURE.pdf",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "4495145"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "application/pdf"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"uG7TjKY26HdjmvRyzyFXa7u7ULbiEW7Qp6P6JW0ylxo=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sun, 09 Mar 2025 06:33:23 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-uG7TjKY26HdjmvRyzyFXa7u7ULbiEW7Qp6P6JW0ylxo="
         }
       ]
     }

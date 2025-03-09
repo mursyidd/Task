@@ -29,7 +29,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Sun, 09 Mar 2025 05:28:50 GMT"
+          "Value": "Sun, 09 Mar 2025 06:48:38 GMT"
         }
       ],
       "EndpointProperties": [
@@ -74,7 +74,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Sun, 09 Mar 2025 05:28:50 GMT"
+          "Value": "Sun, 09 Mar 2025 06:48:38 GMT"
         }
       ],
       "EndpointProperties": [
@@ -16973,6 +16973,170 @@
         {
           "Name": "integrity",
           "Value": "sha256-OZVI+w57FGwS9boYCZpH1ZSpcP7pYhLu4KtIUvPlZ4I="
+        }
+      ]
+    },
+    {
+      "Route": "uploads/IT Programmer.4l89z2xuur.pdf",
+      "AssetFile": "uploads/IT Programmer.pdf",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "4495145"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "application/pdf"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"uG7TjKY26HdjmvRyzyFXa7u7ULbiEW7Qp6P6JW0ylxo=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sun, 09 Mar 2025 06:50:34 GMT"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "4l89z2xuur"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-uG7TjKY26HdjmvRyzyFXa7u7ULbiEW7Qp6P6JW0ylxo="
+        },
+        {
+          "Name": "label",
+          "Value": "uploads/IT Programmer.pdf"
+        }
+      ]
+    },
+    {
+      "Route": "uploads/IT Programmer.pdf",
+      "AssetFile": "uploads/IT Programmer.pdf",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "4495145"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "application/pdf"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"uG7TjKY26HdjmvRyzyFXa7u7ULbiEW7Qp6P6JW0ylxo=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sun, 09 Mar 2025 06:50:34 GMT"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-uG7TjKY26HdjmvRyzyFXa7u7ULbiEW7Qp6P6JW0ylxo="
+        }
+      ]
+    },
+    {
+      "Route": "uploads/Jaecoo-J7PHEV-EBROCHURE.4l89z2xuur.pdf",
+      "AssetFile": "uploads/Jaecoo-J7PHEV-EBROCHURE.pdf",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "4495145"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "application/pdf"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"uG7TjKY26HdjmvRyzyFXa7u7ULbiEW7Qp6P6JW0ylxo=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sun, 09 Mar 2025 06:33:23 GMT"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "4l89z2xuur"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-uG7TjKY26HdjmvRyzyFXa7u7ULbiEW7Qp6P6JW0ylxo="
+        },
+        {
+          "Name": "label",
+          "Value": "uploads/Jaecoo-J7PHEV-EBROCHURE.pdf"
+        }
+      ]
+    },
+    {
+      "Route": "uploads/Jaecoo-J7PHEV-EBROCHURE.pdf",
+      "AssetFile": "uploads/Jaecoo-J7PHEV-EBROCHURE.pdf",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "4495145"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "application/pdf"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"uG7TjKY26HdjmvRyzyFXa7u7ULbiEW7Qp6P6JW0ylxo=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sun, 09 Mar 2025 06:33:23 GMT"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-uG7TjKY26HdjmvRyzyFXa7u7ULbiEW7Qp6P6JW0ylxo="
         }
       ]
     }

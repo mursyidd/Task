@@ -121,7 +121,7 @@ public class HomeController : Controller
             return BadRequest(new { message = "Invalid data" });
         }
 
-        SESSION_A_APPL_DTL_TBL model;
+        SESSION_A_APPL_DTL_TBL model = new SESSION_A_APPL_DTL_TBL();
         try
         {
             model = JsonConvert.DeserializeObject<SESSION_A_APPL_DTL_TBL>(Data);
@@ -156,7 +156,7 @@ public class HomeController : Controller
             return BadRequest(new { message = "Invalid data" });
         }
 
-        SESSION_B_EMPL_DTL_TBL model;
+        SESSION_B_EMPL_DTL_TBL model = new SESSION_B_EMPL_DTL_TBL();
         try
         {
             model = JsonConvert.DeserializeObject<SESSION_B_EMPL_DTL_TBL>(Data);
@@ -191,7 +191,7 @@ public class HomeController : Controller
             return BadRequest(new { message = "Invalid data" });
         }
 
-        SESSION_C_QUAL_DTL_TBL model;
+        SESSION_C_QUAL_DTL_TBL model = new SESSION_C_QUAL_DTL_TBL();
         try
         {
             model = JsonConvert.DeserializeObject<SESSION_C_QUAL_DTL_TBL>(Data);
@@ -226,7 +226,7 @@ public class HomeController : Controller
             return BadRequest(new { message = "Invalid data" });
         }
 
-        SESSION_D_PAST_EMPL_DTL_TBL model;
+        SESSION_D_PAST_EMPL_DTL_TBL model = new SESSION_D_PAST_EMPL_DTL_TBL();
         try
         {
             model = JsonConvert.DeserializeObject<SESSION_D_PAST_EMPL_DTL_TBL>(Data);
@@ -244,6 +244,69 @@ public class HomeController : Controller
             }
 
             _db.SESSION_D_PAST_EMPL_DTL_TBL.Add(model);
+            await _db.SaveChangesAsync();
+            return Ok(new { message = "Data saved successfully!" });
+        }
+        catch (Exception ex)
+        {
+            return StatusCode(500, new { message = "Internal server error", error = ex.Message });
+        }
+    }
+
+    [HttpPost]
+    public async Task<IActionResult> UploadFile(IFormFile RESUME, IFormFile COVER_LETTER)
+    {
+        if (RESUME == null || COVER_LETTER == null)
+        {
+            return BadRequest(new { message = "No file uploaded" });
+        }
+
+        var uploadsFolder = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/uploads");
+        if (!Directory.Exists(uploadsFolder))
+        {
+            Directory.CreateDirectory(uploadsFolder);
+        }
+
+        var filePath = Path.Combine(uploadsFolder, RESUME.FileName);
+        using (var stream = new FileStream(filePath, FileMode.Create))
+        {
+            await RESUME.CopyToAsync(stream);
+        }
+
+        using (var stream = new FileStream(filePath, FileMode.Create))
+        {
+            await COVER_LETTER.CopyToAsync(stream);
+        }
+
+        return Ok(new { message = "Files uploaded successfully!", ResumeFileName = RESUME.FileName, CoverFileName = COVER_LETTER.FileName });
+    }
+
+    [HttpPost]
+    public async Task<IActionResult> CreateSecE(string Data)
+    {
+        if (string.IsNullOrWhiteSpace(Data))
+        {
+            return BadRequest(new { message = "Invalid data" });
+        }
+
+        SESSION_E_DOC_DTL_TBL model;
+        try
+        {
+            model = JsonConvert.DeserializeObject<SESSION_E_DOC_DTL_TBL>(Data);
+        }
+        catch (JsonException)
+        {
+            return BadRequest(new { message = "Invalid JSON format" });
+        }
+
+        try
+        {
+            if (string.IsNullOrEmpty(model.DOC_RESUME) || string.IsNullOrEmpty(model.DOC_COVER) || !model.AGREEMENT)
+            {
+                return BadRequest(new { message = "Please check your form!" });
+            }
+
+            _db.SESSION_E_DOC_DTL_TBL.Add(model);
             await _db.SaveChangesAsync();
             return Ok(new { message = "Data saved successfully!" });
         }

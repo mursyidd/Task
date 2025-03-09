@@ -343,36 +343,57 @@
     }
 
     async function saveSectionEData() {
-        const RESUME = document.getElementById("RESUME").value;
-        const COVER_LETTER = document.getElementById("COVER_LETTER").value;
+        const RESUME = document.getElementById("RESUME").files[0];
+        const COVER_LETTER = document.getElementById("COVER_LETTER").files[0];
         const isAGREE = document.getElementById("isAGREE").checked;
 
         const now = new Date();
         const formattedDate = now.toLocaleDateString("en-GB").split("/").reverse().join(""); // Format: ddMMyyyy
         const time = formattedDate + "001";
 
+        const formData = new FormData();
+        formData.append("RESUME", RESUME);
+        formData.append("COVER_LETTER", COVER_LETTER);
+
+        let ResumeFileName = "";
+        let CoverFileName = "";
+
+        try {
+            const response = await fetch("/Home/UploadFile", {
+                method: "POST",
+                body: formData
+            });
+
+            const result = await response.json();
+
+            if (response.ok) {
+                ResumeFileName = result.ResumeFileName;
+                CoverFileName = result.CoverFileName;
+            } else {
+                alert("Upload failed: " + result.message);
+            }
+        } catch (error) {
+        }
+
         const requestData = {
             MST_REF_ID: parseInt(time, 10),
-            RESUME: RESUME,
-            COVER_LETTER: COVER_LETTER,
-            isAGREE: isAGREE
+            DOC_RESUME: ResumeFileName,
+            DOC_COVER: CoverFileName,
+            AGREEMENT: isAGREE
         };
 
-        console.log(requestData);
-        return false;
-
-        // try {
-        //     const response = await $.ajax({
-        //         type: "POST",
-        //         url: '@Url.Action("CreateSecE", "Home")',
-        //         dataType: "json",
-        //         data: { "Data": JSON.stringify(requestData) }
-        //     });
-        //     return true;
-        // } catch (error) {
-        //     alert(error.responseJSON.message);
-        //     return false;
-        // }
+        try {
+            const response = await $.ajax({
+                type: "POST",
+                url: '@Url.Action("CreateSecE", "Home")',
+                dataType: "json",
+                data: { "Data": JSON.stringify(requestData) }
+            });
+            return true;
+        } catch (error) {
+            alert(error.responseJSON.message);
+            return false;
+        }
     }
 
 </script>
