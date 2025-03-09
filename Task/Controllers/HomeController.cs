@@ -22,9 +22,11 @@ public class HomeController : Controller
 
     public async Task<IActionResult> Welcome()
     {
-        ReviewModel review = new ReviewModel();
+        List<MST_APPLICATION_TBL> Applications = new List<MST_APPLICATION_TBL>();
 
-        return View(review);
+        Applications = await _db.MST_APPLICATION_TBL.Where(x => x.ActiveStatus == "Y").ToListAsync();
+
+        return View(Applications);
     }
 
     // GET: People
@@ -356,5 +358,64 @@ public class HomeController : Controller
         refIdNum = refIdNum + 1;
 
         return refIdNum.ToString();
+    }
+
+    [HttpPost]
+    public async Task<string> saveToMaster(string ID, int stageID, int sessionID)
+    {
+        var existingRecord = await _db.MST_APPLICATION_TBL
+                                          .FirstOrDefaultAsync(a => a.ApplicationID == ID);
+        var name = await _db.SESSION_A_APPL_DTL_TBL
+                .Where(a => a.MST_REF_ID == ID)
+                .Select(a => a.APPL_NAME)
+                .FirstOrDefaultAsync() ?? "System";
+
+        if (existingRecord != null)
+        {
+            // Update existing record
+            existingRecord.StageID = stageID;
+            existingRecord.SessionID = sessionID;
+            existingRecord.UpdatedDate = DateTime.UtcNow; // Example field
+            existingRecord.UpdatedBy = name; // Change accordingly
+            existingRecord.ActiveStatus = "Y";
+
+
+            _db.MST_APPLICATION_TBL.Update(existingRecord);
+            await _db.SaveChangesAsync();
+        }
+        else
+        {
+            // Create new record
+            var newRecord = new MST_APPLICATION_TBL
+            {
+                ApplicationID = ID,
+                StageID = stageID,
+                SessionID = sessionID,
+                CreatedDate = DateTime.UtcNow,
+                CreatedBy = name,
+                UpdatedDate = DateTime.UtcNow,
+                UpdatedBy = name,
+                ActiveStatus = "Y",
+            };
+
+            await _db.MST_APPLICATION_TBL.AddAsync(newRecord);
+            await _db.SaveChangesAsync();
+        }
+
+        return ID;
+    }
+
+    // POST: People/Delete/5
+    [HttpPost]
+    public async Task<IActionResult> DeleteApplication(int id)
+    {
+        var MST_APPLICATION_TBL = await _db.MST_APPLICATION_TBL.FindAsync(id);
+        if (MST_APPLICATION_TBL != null)
+        {
+            MST_APPLICATION_TBL.ActiveStatus = "N";
+            _db.Update(MST_APPLICATION_TBL);
+            await _db.SaveChangesAsync();
+        }
+        return RedirectToAction(nameof(Welcome));
     }
 }

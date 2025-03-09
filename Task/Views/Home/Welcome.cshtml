@@ -1,7 +1,13 @@
-﻿@model ReviewModel
+﻿@model List<MST_APPLICATION_TBL>
 @{
     ViewData["Title"] = "Welcome Screen";
 }
+<style type="text/css">
+    .nav-tabs .nav-link {
+        pointer-events: none;
+        opacity: 0.5; /* Optional: Makes it look disabled */
+    }
+</style>
 
 <div class="container mt-5">
     <h2 class="text-center mb-4">Application Process</h2>
@@ -19,7 +25,64 @@
 
     <!-- Tab Content -->
     <div class="tab-content p-4 border">
-        <div class="tab-pane fade show active" id="tab1"> <h4>Application</h4> <p>Welcome to the application process.</p></div>
+        <div class="tab-pane fade show active" id="tab1">
+            <h4>Application</h4> <p>Welcome to the application process.</p>
+
+            <div class="d-flex justify-content-between mt-4">
+                <button class="btn btn-primary" id="newBtn">New Application</button>
+            </div>
+            <div class="card shadow-lg p-4">
+                <h4 class="mb-3">Application List</h4>
+                <table class="table table-bordered table-hover">
+                    <thead class="table-dark">
+                        <tr>
+                            <th>SNO</th>
+                            <th>Application ID</th>
+                            <th>Application Stage</th>
+                            <th>Application Session</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var MST_APPLICATION_TBL in Model)
+                        {
+                            <tr>
+                                <td>@MST_APPLICATION_TBL.RunninNO</td>
+                                <td>@MST_APPLICATION_TBL.ApplicationID</td>
+                                <td>@MST_APPLICATION_TBL.StageID</td>
+                                <td>@MST_APPLICATION_TBL.SessionID</td>
+                                <td>
+                                    <a asp-action="Edit" asp-route-id="@MST_APPLICATION_TBL.RunninNO" class="btn btn-warning btn-sm">Edit</a>
+                                    <a asp-action="View" asp-route-id="@MST_APPLICATION_TBL.RunninNO" class="btn btn-info btn-sm">View</a>
+                                    <button type="button" class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#deleteModal-@MST_APPLICATION_TBL.RunninNO">Delete</button>
+                                </td>
+                            </tr>
+
+                            <!-- Delete Confirmation Modal -->
+                            <div class="modal fade" id="deleteModal-@MST_APPLICATION_TBL.RunninNO" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="deleteModalLabel">Confirm Deletion</h5>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                        </div>
+                                        <div class="modal-body">
+                                            Are you sure you want to delete @MST_APPLICATION_TBL.CreatedBy application?
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                                            <form method="post" asp-action="DeleteApplication" asp-route-id="@MST_APPLICATION_TBL.RunninNO">
+                                                <button type="submit" class="btn btn-danger">Delete</button>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
 
         <!-- Enhanced Section A: Applicant Personal Details -->
         <div class="tab-pane fade" id="tab2">
@@ -174,16 +237,16 @@
 
     <!-- Bottom Action Buttons -->
     <div class="text-center mt-3">
-        <button class="btn btn-danger">Cancel</button>
+        <button class="btn btn-danger" id="cancelBtn">Cancel</button>
         <button class="btn btn-warning" id="saveBtn">Save</button>
-        <button class="btn btn-success">Submit</button>
+        <button class="btn btn-success" id="submitBtn">Submit</button>
     </div>
 </div>
 
 <script>
     var MST_REF_ID = "0";
-    let currentTab = 0;
-    const tabs = document.querySelectorAll('.nav-link');
+    let currentTab = 3;
+    let tabs = document.querySelectorAll('.nav-link');
 
     function showTab(index) {
         if (index >= 0 && index < tabs.length) {
@@ -192,15 +255,24 @@
             document.querySelector('.tab-pane.show').classList.remove('show', 'active');
             document.querySelector(tabs[index].getAttribute('href')).classList.add('show', 'active');
             currentTab = index;
-        }
 
-        if (index == 9) {
-            getAllInfo();
+            if (currentTab === 3) {
+                document.getElementById("prevBtn").style.display = "none";
+                document.getElementById("nextBtn").style.display = "none";
+            } else {
+                document.getElementById("prevBtn").style.display = "inline-block";
+                document.getElementById("nextBtn").style.display = "inline-block";
+            }
         }
     }
+    showTab(currentTab);
+
+    document.getElementById('newBtn').addEventListener('click', function () {
+        showTab(4);
+    });
 
     document.getElementById('nextBtn').addEventListener('click', function () {
-        handleSaveAndProceed(currentTab);
+        handleSaveAndProceed(currentTab, false);
     });
 
     document.getElementById('prevBtn').addEventListener('click', function () {
@@ -209,24 +281,42 @@
         }
     });
 
+    document.getElementById('cancelBtn').addEventListener('click', function () {
+        showTab(3);
+    });
+
     // Navigate to the first tab when clicking "Save"
-    document.getElementById('saveBtn').addEventListener('click', function () {
-        showTab(0);
-        alert("Your progress has been saved!"); // Optional: Show a confirmation message
+    document.getElementById('saveBtn').addEventListener('click', async function () {
+        const proceed = await handleSaveAndProceed(currentTab, true);
+        console.log(proceed);
+        if (proceed) {
+            showTab(3);
+        }
+    });
+
+    document.getElementById('submitBtn').addEventListener('click', async function () {
+        const proceed = await handleSaveAndProceed(currentTab, true);
+        if (proceed) {
+            showTab(3);
+        }
     });
 
     // Ensure the tab updates correctly when clicked manually
     tabs.forEach((tab, index) => {
         tab.addEventListener('shown.bs.tab', function () {
             currentTab = index;
-        });
 
-        if (index == 9) {
-            getAllInfo();
-        }
+            if (currentTab === 3) {
+                document.getElementById("prevBtn").style.display = "none";
+                document.getElementById("nextBtn").style.display = "none";
+            } else {
+                document.getElementById("prevBtn").style.display = "inline-block";
+                document.getElementById("nextBtn").style.display = "inline-block";
+            }
+        });
     });
 
-    async function handleSaveAndProceed(currentTab) {
+    async function handleSaveAndProceed(currentTab, isFromSaveBtn) {
         let isSaved = false;
 
         if (currentTab === 4) { // Tab 2 (Section A)
@@ -246,9 +336,27 @@
             }
         }
 
-        if (isSaved) {
+
+        if (isSaved && !isFromSaveBtn) {
+            saveToMaster(1, currentTab-3);
             showTab(currentTab + 1);
         }
+
+        return isSaved;
+    }
+
+    function saveToMaster(stageID, sessionID) {
+        $.ajax({
+            type: "POST",
+            url: '@Url.Action("saveToMaster", "Home")',
+            data: {
+                ID: MST_REF_ID,
+                stageID: stageID,
+                sessionID: sessionID,
+            },
+            success: function (data) {
+            },
+        });
     }
 
     async function saveSectionAData() {
