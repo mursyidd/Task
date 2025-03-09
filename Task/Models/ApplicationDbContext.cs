@@ -8,7 +8,6 @@ namespace Task.Models
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
             : base(options) { }
 
-        public Microsoft.EntityFrameworkCore.DbSet<Person> People { get; set; }
         public Microsoft.EntityFrameworkCore.DbSet<SESSION_A_APPL_DTL_TBL> SESSION_A_APPL_DTL_TBL { get; set; }
         public Microsoft.EntityFrameworkCore.DbSet<SESSION_B_EMPL_DTL_TBL> SESSION_B_EMPL_DTL_TBL { get; set; }
         public Microsoft.EntityFrameworkCore.DbSet<SESSION_C_QUAL_DTL_TBL> SESSION_C_QUAL_DTL_TBL { get; set; }

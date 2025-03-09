@@ -52,7 +52,7 @@
                                 <td>@MST_APPLICATION_TBL.StageID</td>
                                 <td>@MST_APPLICATION_TBL.SessionID</td>
                                 <td>
-                                    <a asp-action="Edit" asp-route-id="@MST_APPLICATION_TBL.RunninNO" class="btn btn-warning btn-sm">Edit</a>
+                                    <button class="btn btn-warning btn-sm" id="editBtn" onclick="editOnClicked(@MST_APPLICATION_TBL.ApplicationID, @MST_APPLICATION_TBL.SessionID)">Edit</button>
                                     <a asp-action="View" asp-route-id="@MST_APPLICATION_TBL.RunninNO" class="btn btn-info btn-sm">View</a>
                                     <button type="button" class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#deleteModal-@MST_APPLICATION_TBL.RunninNO">Delete</button>
                                 </td>
@@ -245,8 +245,9 @@
 
 <script>
     var MST_REF_ID = "0";
-    let currentTab = 3;
+    let currentTab = 1;
     let tabs = document.querySelectorAll('.nav-link');
+    let isEdit = false;
 
     function showTab(index) {
         if (index >= 0 && index < tabs.length) {
@@ -256,19 +257,41 @@
             document.querySelector(tabs[index].getAttribute('href')).classList.add('show', 'active');
             currentTab = index;
 
-            if (currentTab === 3) {
-                document.getElementById("prevBtn").style.display = "none";
-                document.getElementById("nextBtn").style.display = "none";
-            } else {
-                document.getElementById("prevBtn").style.display = "inline-block";
-                document.getElementById("nextBtn").style.display = "inline-block";
+            let prevBtn = document.getElementById("prevBtn");
+            let nextBtn = document.getElementById("nextBtn");
+            let btnContainer = prevBtn.parentElement;
+
+            if (currentTab === 1) {
+                prevBtn.style.display = "none";
+                nextBtn.style.display = "none";
+            } else if (currentTab === 2) {
+                prevBtn.style.display = "none";
+                btnContainer.classList.remove("justify-content-between");
+                btnContainer.classList.add("justify-content-end");
+
+                nextBtn.style.display = "inline-block";
+            } else if (currentTab === 3) {
+                btnContainer.classList.remove("justify-content-end");
+                btnContainer.classList.add("justify-content-between");
+                prevBtn.style.display = "inline-block";
+                nextBtn.style.display = "inline-block";
+            } else if (currentTab === 6) {
+                btnContainer.classList.remove("justify-content-end");
+                btnContainer.classList.add("justify-content-between");
+                prevBtn.style.display = "inline-block";
+                nextBtn.style.display = "inline-block";
+            } else if (currentTab === 7) {
+                btnContainer.classList.remove("justify-content-end");
+                btnContainer.classList.add("justify-content-between");
+                prevBtn.style.display = "inline-block";
+                nextBtn.style.display = "none";
             }
         }
     }
     showTab(currentTab);
 
     document.getElementById('newBtn').addEventListener('click', function () {
-        showTab(4);
+        showTab(2);
     });
 
     document.getElementById('nextBtn').addEventListener('click', function () {
@@ -276,42 +299,58 @@
     });
 
     document.getElementById('prevBtn').addEventListener('click', function () {
+        if (isEdit) {
+            patchValue(currentTab);
+        } 
+
         if (currentTab > 0) {
             showTab(currentTab - 1);
         }
     });
 
     document.getElementById('cancelBtn').addEventListener('click', function () {
-        showTab(3);
+        showTab(1);
     });
 
-    // Navigate to the first tab when clicking "Save"
     document.getElementById('saveBtn').addEventListener('click', async function () {
         const proceed = await handleSaveAndProceed(currentTab, true);
-        console.log(proceed);
         if (proceed) {
-            showTab(3);
+            showTab(1);
         }
     });
 
     document.getElementById('submitBtn').addEventListener('click', async function () {
         const proceed = await handleSaveAndProceed(currentTab, true);
         if (proceed) {
-            showTab(3);
+            showTab(1);
         }
     });
 
-    // Ensure the tab updates correctly when clicked manually
     tabs.forEach((tab, index) => {
         tab.addEventListener('shown.bs.tab', function () {
             currentTab = index;
 
-            if (currentTab === 3) {
-                document.getElementById("prevBtn").style.display = "none";
-                document.getElementById("nextBtn").style.display = "none";
-            } else {
-                document.getElementById("prevBtn").style.display = "inline-block";
-                document.getElementById("nextBtn").style.display = "inline-block";
+            let prevBtn = document.getElementById("prevBtn");
+            let nextBtn = document.getElementById("nextBtn");
+            let btnContainer = prevBtn.parentElement;
+
+            if (currentTab === 1) {
+                prevBtn.style.display = "none";
+                nextBtn.style.display = "none";
+            } else if (currentTab === 2) {
+                prevBtn.style.display = "none";
+                btnContainer.classList.remove("justify-content-between");
+                btnContainer.classList.add("justify-content-end");
+
+                nextBtn.style.display = "inline-block";
+            } else if (currentTab === 3) {
+                btnContainer.classList.remove("justify-content-end");
+                btnContainer.classList.add("justify-content-between");
+                prevBtn.style.display = "inline-block";
+                nextBtn.style.display = "inline-block";
+            } else if (currentTab === 7) {
+                prevBtn.style.display = "inline-block";
+                nextBtn.style.display = "none";
             }
         });
     });
@@ -319,15 +358,15 @@
     async function handleSaveAndProceed(currentTab, isFromSaveBtn) {
         let isSaved = false;
 
-        if (currentTab === 4) { // Tab 2 (Section A)
+        if (currentTab === 2) {
             isSaved = await saveSectionAData();
-        } else if (currentTab === 5) {
+        } else if (currentTab === 3) {
             isSaved = await saveSectionBData();
-        } else if (currentTab === 6) {
+        } else if (currentTab === 4) {
             isSaved = await saveSectionCData();
-        } else if (currentTab === 7) {
+        } else if (currentTab === 5) {
             isSaved = await saveSectionDData();
-        } else if (currentTab === 8) {
+        } else if (currentTab === 6) {
             const isAGREE = document.getElementById("isAGREE").checked;
             if (isAGREE) {
                 isSaved = await saveSectionEData();
@@ -338,11 +377,72 @@
 
 
         if (isSaved && !isFromSaveBtn) {
-            saveToMaster(1, currentTab-3);
+            saveToMaster(1, currentTab-1);
+
+            if (currentTab + 1 == 7) {
+                await getAllInfo();
+            } 
+                
             showTab(currentTab + 1);
         }
 
         return isSaved;
+    }
+
+    async function patchValue(currentTab) {
+        if (currentTab === 3) {
+            const response = await $.ajax({
+                type: "GET",
+                url: '@Url.Action("getDataSession", "Home")',
+                data: {
+                    MST_REF_ID: MST_REF_ID,
+                    SESSION_ID: currentTab-1,
+                },
+            });
+
+            document.getElementById("APPL_NAME").value = response.APPL_NAME;
+            document.getElementById("APPL_EMAIL").value = response.APPL_EMAIL;
+            document.getElementById("APPL_PHONE").value = response.APPL_PHONE;
+        } else if (currentTab === 4) {
+            const response = await $.ajax({
+                type: "GET",
+                url: '@Url.Action("getDataSession", "Home")',
+                data: {
+                    MST_REF_ID: MST_REF_ID,
+                    SESSION_ID: currentTab-1,
+                },
+            });
+
+            document.getElementById("EMPL_TITLE").value = response.EMPL_TITLE;
+            document.getElementById("EMPL_COMP_NAME").value = response.EMPL_COMP_NAME;
+            document.getElementById("EMPL_EXP").value = response.EMPL_EXP;
+        } else if (currentTab === 5) {
+            const response = await $.ajax({
+                type: "GET",
+                url: '@Url.Action("getDataSession", "Home")',
+                data: {
+                    MST_REF_ID: MST_REF_ID,
+                    SESSION_ID: currentTab-1,
+                },
+            });
+
+            document.getElementById("QUAL").value = response.QUAL;
+            document.getElementById("CERT").value = response.CERT;
+            document.getElementById("SKILL").value = response.SKILL;
+        } else if (currentTab === 6) {
+            const response = await $.ajax({
+                type: "GET",
+                url: '@Url.Action("getDataSession", "Home")',
+                data: {
+                    MST_REF_ID: MST_REF_ID,
+                    SESSION_ID: currentTab-1,
+                },
+            });
+
+            document.getElementById("PAST_COMP_NAME").value = response.PAST_COMP_NAME;
+            document.getElementById("PAST_JOB_TITLE").value = response.PAST_JOB_TITLE;
+            document.getElementById("PAST_EXP").value = response.PAST_EXP;
+        } 
     }
 
     function saveToMaster(stageID, sessionID) {
@@ -368,12 +468,10 @@
                 });
             }
 
-            // Retrieve form values
             const APPL_NAME = document.getElementById("APPL_NAME").value.trim();
             const APPL_EMAIL = document.getElementById("APPL_EMAIL").value.trim();
             const APPL_PHONE = document.getElementById("APPL_PHONE").value.trim();
 
-            // Form validation
             if (!APPL_NAME) {
                 alert("Name is required!");
                 return false;
@@ -396,7 +494,6 @@
                 APPL_PHONE: APPL_PHONE
             };
 
-            // Send data to the backend
             const response = await $.ajax({
                 type: "POST",
                 url: '@Url.Action("CreateSecA", "Home")',
@@ -616,11 +713,39 @@
                 document.body.append(a);
                 a.click();
                 a.remove();
-                //window.URL.revokeObjectURL(url);
             },
             error: function (data) {
             }
         });
+    }
+
+    async function editOnClicked(ApplicationID, SessionID) {
+        MST_REF_ID = ApplicationID;
+        isEdit = true;
+
+        if (SessionID + 2 == 7) {
+            await getAllInfo();
+        } else {
+            clearInput(SessionID + 2);
+        }
+
+        showTab(SessionID + 2);
+    }
+
+    function clearInput(SessionID) {
+        if (SessionID === 3) {
+            document.getElementById("EMPL_TITLE").value = "";
+            document.getElementById("EMPL_COMP_NAME").value = "";
+            document.getElementById("EMPL_EXP").value = "";
+        } else if (SessionID === 5) {
+            document.getElementById("QUAL").value = "";
+            document.getElementById("CERT").value = "";
+            document.getElementById("SKILL").value = "";
+        } else if (SessionID === 6) {
+            document.getElementById("PAST_COMP_NAME").value = "";
+            document.getElementById("PAST_JOB_TITLE").value = "";
+            document.getElementById("PAST_EXP").value = "";
+        }
     }
 </script>
 

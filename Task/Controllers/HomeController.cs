@@ -29,94 +29,6 @@ public class HomeController : Controller
         return View(Applications);
     }
 
-    // GET: People
-    public async Task<IActionResult> Index()
-    {
-        var people = await _db.People.Where(p => !p.IsDeleted).ToListAsync();
-        return View(people);
-    }
-
-    // GET: People/Details/5
-    public async Task<IActionResult> View(int id)
-    {
-        var person = await _db.People.FindAsync(id);
-        if (person == null || person.IsDeleted)
-        {
-            return NotFound();
-        }
-        return View(person);
-    }
-
-    // GET: People/Create
-    public IActionResult Create()
-    {
-        return View();
-    }
-
-    // POST: People/Create
-    [HttpPost]
-    [ValidateAntiForgeryToken]
-    public async Task<IActionResult> Create(Person person)
-    {
-        if (ModelState.IsValid)
-        {
-            _db.People.Add(person);
-            await _db.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
-        }
-        return View(person);
-    }
-
-    // GET: People/Edit/5
-    public async Task<IActionResult> Edit(int id)
-    {
-        var person = await _db.People.FindAsync(id);
-        if (person == null || person.IsDeleted)
-        {
-            return NotFound();
-        }
-        return View(person);
-    }
-
-    // POST: People/Edit/5
-    [HttpPost]
-    [ValidateAntiForgeryToken]
-    public async Task<IActionResult> Edit(int id, Person person)
-    {
-        if (id != person.Id)
-        {
-            return NotFound();
-        }
-
-        if (ModelState.IsValid)
-        {
-            _db.Update(person);
-            await _db.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
-        }
-        return View(person);
-    }
-
-    // POST: People/Delete/5
-    [HttpPost]
-    [ValidateAntiForgeryToken]
-    public async Task<IActionResult> Delete(int id)
-    {
-        var person = await _db.People.FindAsync(id);
-        if (person != null)
-        {
-            person.IsDeleted = true;
-            _db.Update(person);
-            await _db.SaveChangesAsync();
-        }
-        return RedirectToAction(nameof(Index));
-    }
-
-    public IActionResult CreateSecA()
-    {
-        return View();
-    }
-
     [HttpPost]
     public async Task<IActionResult> CreateSecA(string Data)
     {
@@ -142,9 +54,27 @@ public class HomeController : Controller
                 return BadRequest(new { message = "Please check your form!" });
             }
 
-            _db.SESSION_A_APPL_DTL_TBL.Add(model);
-            await _db.SaveChangesAsync();
-            return Ok(new { message = "Data saved successfully!" });
+            var existingRecord = await _db.SESSION_A_APPL_DTL_TBL
+                                  .FirstOrDefaultAsync(a => a.MST_REF_ID == model.MST_REF_ID);
+
+            if (existingRecord != null)
+            {
+                // Update existing record
+                existingRecord.APPL_NAME = model.APPL_NAME;
+                existingRecord.APPL_EMAIL = model.APPL_EMAIL;
+                existingRecord.APPL_PHONE = model.APPL_PHONE;
+
+                _db.Update(existingRecord);
+                await _db.SaveChangesAsync();
+                return Ok(new { message = "Data updated successfully!" });
+            }
+            else
+            {
+                // Insert new record
+                _db.SESSION_A_APPL_DTL_TBL.Add(model);
+                await _db.SaveChangesAsync();
+                return Ok(new { message = "Data saved successfully!" });
+            }
         }
         catch (Exception ex)
         {
@@ -177,9 +107,27 @@ public class HomeController : Controller
                 return BadRequest(new { message = "Please check your form!" });
             }
 
-            _db.SESSION_B_EMPL_DTL_TBL.Add(model);
-            await _db.SaveChangesAsync();
-            return Ok(new { message = "Data saved successfully!" });
+            var existingRecord = await _db.SESSION_B_EMPL_DTL_TBL
+                                  .FirstOrDefaultAsync(a => a.MST_REF_ID == model.MST_REF_ID);
+
+            if (existingRecord != null)
+            {
+                // Update existing record
+                existingRecord.EMPL_TITLE = model.EMPL_TITLE;
+                existingRecord.EMPL_EXP = model.EMPL_EXP;
+                existingRecord.EMPL_COMP_NAME = model.EMPL_COMP_NAME;
+
+                _db.Update(existingRecord);
+                await _db.SaveChangesAsync();
+                return Ok(new { message = "Data updated successfully!" });
+            }
+            else
+            {
+                // Insert new record
+                _db.SESSION_B_EMPL_DTL_TBL.Add(model);
+                await _db.SaveChangesAsync();
+                return Ok(new { message = "Data saved successfully!" });
+            }
         }
         catch (Exception ex)
         {
@@ -212,9 +160,27 @@ public class HomeController : Controller
                 return BadRequest(new { message = "Please check your form!" });
             }
 
-            _db.SESSION_C_QUAL_DTL_TBL.Add(model);
-            await _db.SaveChangesAsync();
-            return Ok(new { message = "Data saved successfully!" });
+            var existingRecord = await _db.SESSION_C_QUAL_DTL_TBL
+                                  .FirstOrDefaultAsync(a => a.MST_REF_ID == model.MST_REF_ID);
+
+            if (existingRecord != null)
+            {
+                // Update existing record
+                existingRecord.QUAL = model.QUAL;
+                existingRecord.CERT = model.CERT;
+                existingRecord.SKILL = model.SKILL;
+
+                _db.Update(existingRecord);
+                await _db.SaveChangesAsync();
+                return Ok(new { message = "Data updated successfully!" });
+            }
+            else
+            {
+                // Insert new record
+                _db.SESSION_C_QUAL_DTL_TBL.Add(model);
+                await _db.SaveChangesAsync();
+                return Ok(new { message = "Data saved successfully!" });
+            }
         }
         catch (Exception ex)
         {
@@ -247,9 +213,25 @@ public class HomeController : Controller
                 return BadRequest(new { message = "Please check your form!" });
             }
 
-            _db.SESSION_D_PAST_EMPL_DTL_TBL.Add(model);
-            await _db.SaveChangesAsync();
-            return Ok(new { message = "Data saved successfully!" });
+            var existingRecord = await _db.SESSION_D_PAST_EMPL_DTL_TBL
+                                  .FirstOrDefaultAsync(a => a.MST_REF_ID == model.MST_REF_ID);
+
+            if (existingRecord != null)
+            {
+                existingRecord.PAST_COMP_NAME = model.PAST_COMP_NAME;
+                existingRecord.PAST_JOB_TITLE = model.PAST_JOB_TITLE;
+                existingRecord.PAST_EXP = model.PAST_EXP;
+
+                _db.Update(existingRecord);
+                await _db.SaveChangesAsync();
+                return Ok(new { message = "Data updated successfully!" });
+            }
+            else
+            {
+                _db.SESSION_D_PAST_EMPL_DTL_TBL.Add(model);
+                await _db.SaveChangesAsync();
+                return Ok(new { message = "Data saved successfully!" });
+            }
         }
         catch (Exception ex)
         {
@@ -311,9 +293,25 @@ public class HomeController : Controller
                 return BadRequest(new { message = "Please check your form!" });
             }
 
-            _db.SESSION_E_DOC_DTL_TBL.Add(model);
-            await _db.SaveChangesAsync();
-            return Ok(new { message = "Data saved successfully!" });
+            var existingRecord = await _db.SESSION_E_DOC_DTL_TBL
+                                  .FirstOrDefaultAsync(a => a.MST_REF_ID == model.MST_REF_ID);
+
+            if (existingRecord != null)
+            {
+                existingRecord.DOC_RESUME = model.DOC_RESUME;
+                existingRecord.DOC_COVER = model.DOC_COVER;
+                existingRecord.AGREEMENT = model.AGREEMENT;
+
+                _db.Update(existingRecord);
+                await _db.SaveChangesAsync();
+                return Ok(new { message = "Data updated successfully!" });
+            }
+            else
+            {
+                _db.SESSION_E_DOC_DTL_TBL.Add(model);
+                await _db.SaveChangesAsync();
+                return Ok(new { message = "Data saved successfully!" });
+            }
         }
         catch (Exception ex)
         {
@@ -332,6 +330,35 @@ public class HomeController : Controller
         review.SESSION_E = await _db.SESSION_E_DOC_DTL_TBL.Where(x => x.MST_REF_ID == MST_REF_ID).FirstOrDefaultAsync();
 
         return review;
+    }
+
+    public async Task<object?> getDataSession(string MST_REF_ID, int SESSION_ID)
+    {
+        if (SESSION_ID == 2)
+        {
+            return await _db.SESSION_A_APPL_DTL_TBL
+                        .FirstOrDefaultAsync(a => a.MST_REF_ID == MST_REF_ID);
+        } else if (SESSION_ID == 3)
+        {
+            return await _db.SESSION_B_EMPL_DTL_TBL
+                        .FirstOrDefaultAsync(a => a.MST_REF_ID == MST_REF_ID);
+        } else if (SESSION_ID == 4)
+        {
+            return await _db.SESSION_C_QUAL_DTL_TBL
+                        .FirstOrDefaultAsync(a => a.MST_REF_ID == MST_REF_ID);
+        }
+        else if (SESSION_ID == 5)
+        {
+            return await _db.SESSION_D_PAST_EMPL_DTL_TBL
+                        .FirstOrDefaultAsync(a => a.MST_REF_ID == MST_REF_ID);
+        }
+        else if (SESSION_ID == 6)
+        {
+            return await _db.SESSION_E_DOC_DTL_TBL
+                        .FirstOrDefaultAsync(a => a.MST_REF_ID == MST_REF_ID);
+        }
+
+        return null;
     }
 
     [HttpPost]
@@ -372,11 +399,10 @@ public class HomeController : Controller
 
         if (existingRecord != null)
         {
-            // Update existing record
             existingRecord.StageID = stageID;
             existingRecord.SessionID = sessionID;
-            existingRecord.UpdatedDate = DateTime.UtcNow; // Example field
-            existingRecord.UpdatedBy = name; // Change accordingly
+            existingRecord.UpdatedDate = DateTime.UtcNow;
+            existingRecord.UpdatedBy = name;
             existingRecord.ActiveStatus = "Y";
 
 
@@ -405,7 +431,6 @@ public class HomeController : Controller
         return ID;
     }
 
-    // POST: People/Delete/5
     [HttpPost]
     public async Task<IActionResult> DeleteApplication(int id)
     {
