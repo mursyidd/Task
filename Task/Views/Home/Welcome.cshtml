@@ -26,30 +26,114 @@
             <form method="post" action="CreateSecA" id="sectionAForm">
                 <div class="mb-3">
                     <label class="form-label">Full Name</label>
-                    <input type="text" name="COLUMN1" id="COLUMN1" class="form-control" placeholder="Enter your full name" required>
+                    <input type="text" name="APPL_NAME" id="APPL_NAME" class="form-control" placeholder="Enter your full name" required>
                 </div>
                 <div class="mb-3">
                     <label class="form-label">Email</label>
-                    <input type="email" name="COLUMN2" id="COLUMN2" class="form-control" placeholder="Enter your email" required>
+                    <input type="email" name="APPL_EMAIL" id="APPL_EMAIL" class="form-control" placeholder="Enter your email" required autocomplete="email">
                 </div>
                 <div class="mb-3">
                     <label class="form-label">Phone Number</label>
-                    <input type="text" name="COLUMN3" id="COLUMN3" class="form-control" placeholder="Enter your phone number" required>
+                    <input type="tel" name="APPL_PHONE" id="APPL_PHONE" class="form-control" placeholder="Enter your phone number" required pattern="^\+?[0-9]{10,15}$">
+                </div>
+            </form>
+        </div>
+        <div class="tab-pane fade" id="tab3">
+            <h4>Employment</h4>
+            <p>Provide your current employment details.</p>
+
+            <form method="post" action="SaveEmployment" id="employmentForm">
+                <div class="mb-3">
+                    <label for="JOB_TITLE" class="form-label">Cuirrent Job Title</label>
+                    <input type="text" name="EMPL_TITLE" id="EMPL_TITLE" class="form-control" placeholder="Enter your job title" required>
+                </div>
+                <div class="mb-3">
+                    <label for="COMPANY_NAME" class="form-label">Current Company Name</label>
+                    <input type="text" name="EMPL_COMP_NAME" id="EMPL_COMP_NAME" class="form-control" placeholder="Enter your company name" required>
+                </div>
+                <div class="mb-3">
+                    <label for="YEARS_EXPERIENCE" class="form-label">Years of Experience Here</label>
+                    <input type="number" name="EMPL_EXP" id="EMPL_EXP" class="form-control" placeholder="Enter years of experience" required min="0">
+                </div>
+            </form>
+        </div>
+        <div class="tab-pane fade" id="tab4">
+            <h4>Qualification and Skills</h4>
+            <p>List your qualifications and skills.</p>
+
+            <form method="post" action="SaveQualifications" id="qualificationForm">
+                <div class="mb-3">
+                    <label for="HIGHEST_QUALIFICATION" class="form-label">Highest Qualification</label>
+                    <input type="text" name="QUAL" id="QUAL"
+                           class="form-control" placeholder="Enter your highest qualification" required>
+                </div>
+                <div class="mb-3">
+                    <label for="CERTIFICATIONS" class="form-label">Relevant Certifications</label>
+                    <input type="text" name="CERT" id="CERT"
+                           class="form-control" placeholder="Enter relevant certifications (comma-separated)" required>
+                </div>
+                <div class="mb-3">
+                    <label for="KEY_SKILLS" class="form-label">Key Skills</label>
+                    <textarea name="SKILL" id="SKILL"
+                              class="form-control" rows="3" placeholder="List your key skills" required></textarea>
+                </div>
+            </form>
+        </div>
+        <div class="tab-pane fade" id="tab5">
+            <h4>Working Experience</h4>
+            <p>Describe your past working experience.</p>
+
+            <form method="post" action="SaveExperience" id="experienceForm">
+                <div class="mb-3">
+                    <label for="COMPANY_NAME" class="form-label">Past Company Name</label>
+                    <input type="text" name="PAST_COMP_NAME" id="PAST_COMP_NAME"
+                           class="form-control" placeholder="Enter company name" required>
+                </div>
+                <div class="mb-3">
+                    <label for="JOB_TITLE" class="form-label">Past Job Title</label>
+                    <input type="text" name="PAST_JOB_TITLE" id="PAST_JOB_TITLE"
+                           class="form-control" placeholder="Enter your job title" required>
+                </div>
+                <div class="mb-3">
+                    <label for="YEARS_EXPERIENCE" class="form-label">Past Years of Experience</label>
+                    <input type="number" name="PAST_EXP" id="PAST_EXP"
+                           class="form-control" placeholder="Enter years of experience" required min="0">
+                </div>
+            </form>
+        </div>
+        <div class="tab-pane fade" id="tab6">
+            <h4>Supporting Document & Declaration</h4>
+            <p>Upload supporting documents.</p>
+
+            <form method="post" action="UploadDocuments" id="documentForm" enctype="multipart/form-data">
+                <div class="mb-3">
+                    <label for="RESUME" class="form-label">Upload Resume</label>
+                    <input type="file" name="RESUME" id="RESUME"
+                           class="form-control" accept=".pdf,.doc,.docx" required>
+                    <small class="form-text text-muted">Accepted formats: PDF, DOC, DOCX</small>
+                </div>
+                <div class="mb-3">
+                    <label for="COVER_LETTER" class="form-label">Upload Cover Letter</label>
+                    <input type="file" name="COVER_LETTER" id="COVER_LETTER"
+                           class="form-control" accept=".pdf,.doc,.docx">
+                    <small class="form-text text-muted">Accepted formats: PDF, DOC, DOCX</small>
+                </div>
+                <div class="mb-3 form-check">
+                    <input type="checkbox" name="isAGREE" id="isAGREE" class="form-check-input" required>
+                    <label for="isAGREE" class="form-check-label">
+                        I confirm that all provided information is accurate and truthful.
+                    </label>
                 </div>
             </form>
         </div>
 
-        <div class="tab-pane fade" id="tab3"> <h4>Employment</h4> <p>Provide your employment details.</p></div>
-        <div class="tab-pane fade" id="tab4"> <h4>Qualification and Skills</h4> <p>List your qualifications and skills.</p></div>
-        <div class="tab-pane fade" id="tab5"> <h4>Working Experience</h4> <p>Describe your working experience.</p></div>
-        <div class="tab-pane fade" id="tab6"> <h4>Supporting Document & Declaration</h4> <p>Upload supporting documents.</p></div>
         <div class="tab-pane fade" id="tab7"> <h4>Review Application</h4> <p>Review all your details before submission.</p></div>
     </div>
 
     <!-- Navigation Buttons -->
     <div class="d-flex justify-content-between mt-4">
         <button class="btn btn-secondary" id="prevBtn">Previous</button>
-        <button class="btn btn-primary" id="nextBtn">Next</button>
+        <button class="btn btn-primary" id="nextBtn" type="submit">Next</button>
     </div>
 
     <!-- Bottom Action Buttons -->
@@ -75,12 +159,7 @@
     }
 
     document.getElementById('nextBtn').addEventListener('click', function () {
-        console.log('here', currentTab);
-        if (currentTab === 4) { // Tab 2 (Section A)
-            saveSectionAData().then(() => showTab(currentTab + 1));
-        } else if (currentTab < tabs.length - 1) {
-            showTab(currentTab + 1);
-        }
+        handleSaveAndProceed(currentTab);
     });
 
     document.getElementById('prevBtn').addEventListener('click', function () {
@@ -102,36 +181,198 @@
         });
     });
 
+    async function handleSaveAndProceed(currentTab) {
+        let isSaved = false;
+
+        console.log('here', currentTab);
+        if (currentTab === 4) { // Tab 2 (Section A)
+            isSaved = await saveSectionAData();
+        } else if (currentTab === 5) {
+            isSaved = await saveSectionBData();
+        } else if (currentTab === 6) {
+            isSaved = await saveSectionCData();
+        } else if (currentTab === 7) {
+            isSaved = await saveSectionDData();
+        } else if (currentTab === 8) {
+            const isAGREE = document.getElementById("isAGREE").checked;
+            if (isAGREE) {
+                isSaved = await saveSectionEData();
+            } else {
+                alert("Please tick the checkbox!");
+            }
+        }
+
+        if (isSaved) {
+            showTab(currentTab + 1);
+        }
+    }
+
     async function saveSectionAData() {
-        const column1 = document.getElementById("COLUMN1").value;
-        const column2 = document.getElementById("COLUMN2").value;
-        const column3 = document.getElementById("COLUMN3").value;
+        const APPL_NAME = document.getElementById("APPL_NAME").value;
+        const APPL_EMAIL = document.getElementById("APPL_EMAIL").value;
+        const APPL_PHONE = document.getElementById("APPL_PHONE").value;
+
+        if (!APPL_NAME) {
+            alert("Name is required!");
+            return false;
+        }
+
+        if (!APPL_EMAIL) {
+            alert("Email is required!");
+            return false;
+        }
+
+        if (!APPL_PHONE) {
+            alert("Phone Number is required!");
+            return false;
+        }
+
+        const now = new Date();
+        const formattedDate = now.toLocaleDateString("en-GB").split("/").reverse().join(""); // Format: ddMMyyyy
+        const time = formattedDate + "001";
 
         const requestData = {
-            MST_REF_ID: 123,
-            COLUMN1: column1,
-            COLUMN2: column2,
-            COLUMN3: column3
+            MST_REF_ID: parseInt(time, 10),
+            APPL_NAME: APPL_NAME,
+            APPL_EMAIL: APPL_EMAIL,
+            APPL_PHONE: APPL_PHONE
         };
 
         try {
-            $.ajax({
+            const response = await $.ajax({
                 type: "POST",
                 url: '@Url.Action("CreateSecA", "Home")',
                 dataType: "json",
-                data: { "Data": JSON.stringify(requestData) },
-                success: function (data) {
-                },
-                error: function (error) {
-                    console.log("Error:", error);
-                    alert("error!");
-                },
+                data: { "Data": JSON.stringify(requestData) }
             });
-
+            return true;
         } catch (error) {
-            console.error("Error:", error);
-            alert("Failed to save data.");
+            alert(error.responseJSON.message);
+            return false;
         }
+    }
+
+    async function saveSectionBData() {
+        const EMPL_TITLE = document.getElementById("EMPL_TITLE").value;
+        const EMPL_COMP_NAME = document.getElementById("EMPL_COMP_NAME").value;
+        const EMPL_EXP = document.getElementById("EMPL_EXP").value;
+
+        const now = new Date();
+        const formattedDate = now.toLocaleDateString("en-GB").split("/").reverse().join(""); // Format: ddMMyyyy
+        const time = formattedDate + "001";
+
+        const requestData = {
+            MST_REF_ID: parseInt(time, 10),
+            EMPL_TITLE: EMPL_TITLE,
+            EMPL_COMP_NAME: EMPL_COMP_NAME,
+            EMPL_EXP: EMPL_EXP
+        };
+
+        try {
+            const response = await $.ajax({
+                type: "POST",
+                url: '@Url.Action("CreateSecB", "Home")',
+                dataType: "json",
+                data: { "Data": JSON.stringify(requestData) }
+            });
+            return true;
+        } catch (error) {
+            alert(error.responseJSON.message);
+            return false;
+        }
+    }
+
+    async function saveSectionCData() {
+        const QUAL = document.getElementById("QUAL").value;
+        const CERT = document.getElementById("CERT").value;
+        const SKILL = document.getElementById("SKILL").value;
+
+        const now = new Date();
+        const formattedDate = now.toLocaleDateString("en-GB").split("/").reverse().join(""); // Format: ddMMyyyy
+        const time = formattedDate + "001";
+
+        const requestData = {
+            MST_REF_ID: parseInt(time, 10),
+            QUAL: QUAL,
+            CERT: CERT,
+            SKILL: SKILL
+        };
+
+        try {
+            const response = await $.ajax({
+                type: "POST",
+                url: '@Url.Action("CreateSecC", "Home")',
+                dataType: "json",
+                data: { "Data": JSON.stringify(requestData) }
+            });
+            return true;
+        } catch (error) {
+            alert(error.responseJSON.message);
+            return false;
+        }
+    }
+
+    async function saveSectionDData() {
+        const PAST_COMP_NAME = document.getElementById("PAST_COMP_NAME").value;
+        const PAST_JOB_TITLE = document.getElementById("PAST_JOB_TITLE").value;
+        const PAST_EXP = document.getElementById("PAST_EXP").value;
+
+        const now = new Date();
+        const formattedDate = now.toLocaleDateString("en-GB").split("/").reverse().join(""); // Format: ddMMyyyy
+        const time = formattedDate + "001";
+
+        const requestData = {
+            MST_REF_ID: parseInt(time, 10),
+            PAST_COMP_NAME: PAST_COMP_NAME,
+            PAST_JOB_TITLE: PAST_JOB_TITLE,
+            PAST_EXP: PAST_EXP
+        };
+
+        try {
+            const response = await $.ajax({
+                type: "POST",
+                url: '@Url.Action("CreateSecD", "Home")',
+                dataType: "json",
+                data: { "Data": JSON.stringify(requestData) }
+            });
+            return true;
+        } catch (error) {
+            alert(error.responseJSON.message);
+            return false;
+        }
+    }
+
+    async function saveSectionEData() {
+        const RESUME = document.getElementById("RESUME").value;
+        const COVER_LETTER = document.getElementById("COVER_LETTER").value;
+        const isAGREE = document.getElementById("isAGREE").checked;
+
+        const now = new Date();
+        const formattedDate = now.toLocaleDateString("en-GB").split("/").reverse().join(""); // Format: ddMMyyyy
+        const time = formattedDate + "001";
+
+        const requestData = {
+            MST_REF_ID: parseInt(time, 10),
+            RESUME: RESUME,
+            COVER_LETTER: COVER_LETTER,
+            isAGREE: isAGREE
+        };
+
+        console.log(requestData);
+        return false;
+
+        // try {
+        //     const response = await $.ajax({
+        //         type: "POST",
+        //         url: '@Url.Action("CreateSecE", "Home")',
+        //         dataType: "json",
+        //         data: { "Data": JSON.stringify(requestData) }
+        //     });
+        //     return true;
+        // } catch (error) {
+        //     alert(error.responseJSON.message);
+        //     return false;
+        // }
     }
 
 </script>

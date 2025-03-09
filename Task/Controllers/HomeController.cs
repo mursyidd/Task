@@ -116,17 +116,140 @@ public class HomeController : Controller
     [HttpPost]
     public async Task<IActionResult> CreateSecA(string Data)
     {
-        if (Data == null)
+        if (string.IsNullOrWhiteSpace(Data))
         {
             return BadRequest(new { message = "Invalid data" });
         }
 
-        var model = JsonConvert.DeserializeObject<REF_SESSION_A_TBL>(Data);
+        SESSION_A_APPL_DTL_TBL model;
+        try
+        {
+            model = JsonConvert.DeserializeObject<SESSION_A_APPL_DTL_TBL>(Data);
+        }
+        catch (JsonException)
+        {
+            return BadRequest(new { message = "Invalid JSON format" });
+        }
 
+        try
+        {
+            if (string.IsNullOrEmpty(model.APPL_NAME) || string.IsNullOrEmpty(model.APPL_EMAIL) || string.IsNullOrEmpty(model.APPL_PHONE))
+            {
+                return BadRequest(new { message = "Please check your form!" });
+            }
 
-        _db.REF_SESSION_A_TBL.Add(model);
-        await _db.SaveChangesAsync();
+            _db.SESSION_A_APPL_DTL_TBL.Add(model);
+            await _db.SaveChangesAsync();
+            return Ok(new { message = "Data saved successfully!" });
+        }
+        catch (Exception ex)
+        {
+            return StatusCode(500, new { message = "Internal server error", error = ex.Message });
+        }
+    }
 
-        return Ok(new { message = "Data saved successfully!" });
+    [HttpPost]
+    public async Task<IActionResult> CreateSecB(string Data)
+    {
+        if (string.IsNullOrWhiteSpace(Data))
+        {
+            return BadRequest(new { message = "Invalid data" });
+        }
+
+        SESSION_B_EMPL_DTL_TBL model;
+        try
+        {
+            model = JsonConvert.DeserializeObject<SESSION_B_EMPL_DTL_TBL>(Data);
+        }
+        catch (JsonException)
+        {
+            return BadRequest(new { message = "Invalid JSON format" });
+        }
+
+        try
+        {
+            if (string.IsNullOrEmpty(model.EMPL_TITLE) || string.IsNullOrEmpty(model.EMPL_EXP) || string.IsNullOrEmpty(model.EMPL_COMP_NAME))
+            {
+                return BadRequest(new { message = "Please check your form!" });
+            }
+
+            _db.SESSION_B_EMPL_DTL_TBL.Add(model);
+            await _db.SaveChangesAsync();
+            return Ok(new { message = "Data saved successfully!" });
+        }
+        catch (Exception ex)
+        {
+            return StatusCode(500, new { message = "Internal server error", error = ex.Message });
+        }
+    }
+
+    [HttpPost]
+    public async Task<IActionResult> CreateSecC(string Data)
+    {
+        if (string.IsNullOrWhiteSpace(Data))
+        {
+            return BadRequest(new { message = "Invalid data" });
+        }
+
+        SESSION_C_QUAL_DTL_TBL model;
+        try
+        {
+            model = JsonConvert.DeserializeObject<SESSION_C_QUAL_DTL_TBL>(Data);
+        }
+        catch (JsonException)
+        {
+            return BadRequest(new { message = "Invalid JSON format" });
+        }
+
+        try
+        {
+            if (string.IsNullOrEmpty(model.QUAL) || string.IsNullOrEmpty(model.CERT) || string.IsNullOrEmpty(model.SKILL))
+            {
+                return BadRequest(new { message = "Please check your form!" });
+            }
+
+            _db.SESSION_C_QUAL_DTL_TBL.Add(model);
+            await _db.SaveChangesAsync();
+            return Ok(new { message = "Data saved successfully!" });
+        }
+        catch (Exception ex)
+        {
+            return StatusCode(500, new { message = "Internal server error", error = ex.Message });
+        }
+    }
+
+    [HttpPost]
+    public async Task<IActionResult> CreateSecD(string Data)
+    {
+        if (string.IsNullOrWhiteSpace(Data))
+        {
+            return BadRequest(new { message = "Invalid data" });
+        }
+
+        SESSION_D_PAST_EMPL_DTL_TBL model;
+        try
+        {
+            model = JsonConvert.DeserializeObject<SESSION_D_PAST_EMPL_DTL_TBL>(Data);
+        }
+        catch (JsonException)
+        {
+            return BadRequest(new { message = "Invalid JSON format" });
+        }
+
+        try
+        {
+            if (string.IsNullOrEmpty(model.PAST_COMP_NAME) || string.IsNullOrEmpty(model.PAST_JOB_TITLE) || string.IsNullOrEmpty(model.PAST_EXP))
+            {
+                return BadRequest(new { message = "Please check your form!" });
+            }
+
+            _db.SESSION_D_PAST_EMPL_DTL_TBL.Add(model);
+            await _db.SaveChangesAsync();
+            return Ok(new { message = "Data saved successfully!" });
+        }
+        catch (Exception ex)
+        {
+            return StatusCode(500, new { message = "Internal server error", error = ex.Message });
+        }
     }
 }
